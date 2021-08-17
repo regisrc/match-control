@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useContext, useRef } from 'react';
 
 import Header from '../../components/Header';
 import TitleCard from './components/TitleCard'
@@ -8,44 +8,20 @@ import { Container, Button } from './styles';
 
 import { IMainProps } from '../../models/interfaces';
 
+import { Users } from '../../context/Presence';
+
 const Main = () => {
-    const [props, setProps] = useState<IMainProps[]>([
-        {
-            id: 0,
-            name: "Everson Oliveira",
-            value: 0 
-        }, 
-        {
-            id: 1,
-            name: "Everson Oliveira",
-            value: 0 
-        },
-        {
-            id: 2,
-            name: "Everson Oliveira",
-            value: 0 
-        },
-        {
-            id: 3,
-            name: "Everson Oliveira",
-            value: 0 
-        },
-        {
-            id: 4,
-            name: "Everson Oliveira",
-            value: 0 
-        }
-    ]);
+    const context = useRef(useContext(Users));
 
     return (
         <>
             <Header />
             <Container>
                 <TitleCard />
-                {props.map((prop: IMainProps, index: number) => 
-                    <UserCard value={prop} />
+                {context.current.map((prop: IMainProps, index: number) => 
+                    <UserCard key={index} value={prop} />
                 )}
-            <Button onClick={() => alert("Salvo")}>Gravar</Button>
+            <Button onClick={() => context.current.some(x => x.value === 0) ? alert("ERRO!") : alert("Salvo!")}>Gravar</Button>
             </Container>
         </>
     );

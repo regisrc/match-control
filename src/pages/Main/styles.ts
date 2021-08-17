@@ -29,4 +29,10 @@ export const Button = styled.button`
   :hover {
     opacity: 90%;
   }
-`;
+
+  :disabled {
+    cursor: default;
+    opacity: 100%;
+    background-color: ${(props) => props.theme.colors.primaryGray};
+  }
+`;  

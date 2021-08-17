@@ -1,24 +1,15 @@
-import { useState } from 'react';
-
 import { Container, Icon } from './styles';
 
-import { CheckValues } from '../../models/enums';
-
 interface IUserCardProps {
-    color: string,
-    checkValue: number,
-    icon: string
+    onClick: React.MouseEventHandler<HTMLElement>;
+    color: string;
+    active: boolean;
+    icon: string;
 }
 
-const UserCard: React.FC<IUserCardProps> = ({color, checkValue, icon}) => {
-    const [iconValue, setIconValue] = useState(CheckValues.DefaultValue);
-
-    const UpdateActive = (value: number) => {
-        iconValue === CheckValues.DefaultValue || iconValue !== value ? setIconValue(value) : setIconValue(CheckValues.DefaultValue);
-    }
-
+const UserCard = ({onClick, color, active, icon}: IUserCardProps) => {
     return (
-        <Container onClick={() => UpdateActive(checkValue)} color={color} active={iconValue === checkValue}>
+        <Container onClick={onClick} color={color} active={active}>
             <Icon src={icon} />
         </Container>
     );
