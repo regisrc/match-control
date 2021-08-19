@@ -21,7 +21,7 @@ export const PhotoArea = styled.div`
     align-items: center;
     justify-content: center;
 
-    img + p {
+    img + div {
         margin: 0px 15px;
     }
 `;
@@ -30,6 +30,14 @@ export const Photo = styled.img`
     border-radius: 50%;
 
     height: 48px;
+`;
+
+export const NameArea = styled.div`
+    display: flex;
+    flex-direction: column;
+
+    align-items: center;
+    justify-content: center; 
 `;
 
 export const Name = styled.p`

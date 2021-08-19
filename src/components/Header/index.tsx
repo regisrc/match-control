@@ -2,14 +2,14 @@ import { Container, Title, CompleteDiv } from './styles';
 
 import ReturnButton from '../ReturnButton'
 
-const Header = () => {
-    const TitleText = 'Lista de Presença';
+import { IHeaderSettings } from '../../models/interfaces';
 
+const Header = ({title, isReturnActive, path} : IHeaderSettings) => {
     return (
         <Container>
-            <ReturnButton />
-            <Title>{TitleText}</Title>
-            <CompleteDiv />
+            {isReturnActive ? <ReturnButton path={path}/> : <CompleteDiv width="59px"/>}
+            <Title>{title}</Title>
+            <CompleteDiv width="48px"/>
         </Container>)
 }
 

@@ -1,6 +1,8 @@
 import styled from "styled-components";
 import ReactLoading from "react-loading";
 
+export const Container = styled.div``;
+
 export const ReactLoadingContainer = styled(ReactLoading).attrs((props) => ({
   color: props.theme.colors.primaryDark,
   type: "balls",

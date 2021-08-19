@@ -1,5 +1,9 @@
 import styled from 'styled-components';
 
+interface ICompleteDivControl {
+    width: string;
+}
+
 export const Container = styled.div`
     display: flex;
     flex-direction: row; 
@@ -22,8 +26,8 @@ export const Title = styled.h2`
     color: ${props => props.theme.colors.primaryWhite}
 `;
 
-export const CompleteDiv = styled.div`
-    width: 48px;
+export const CompleteDiv = styled.div<ICompleteDivControl>`
+    width: ${props => props.width};
 
     @media (max-width: 720px) {
         width: 0px;

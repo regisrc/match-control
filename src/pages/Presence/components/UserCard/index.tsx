@@ -4,7 +4,7 @@ import Image from '../../../../assets/photo.jpg';
 import Check from '../../../../assets/bx-check.svg';
 import NotCheck from '../../../../assets/bx-x.svg';
 
-import { Container, PhotoArea, Photo, Name, ControlArea } from './styles';
+import { Container, PhotoArea, Photo, NameArea, Name, ControlArea } from './styles';
 import { theme } from '../../../../styles/theme';
 
 import CheckIcon from '../../../../components/CheckIcon';
@@ -17,8 +17,8 @@ import { Users } from '../../../../context/Presence';
 const UserCard: React.FC<IUserCard> = ({ value }) => {
     const context = useContext(Users);
 
-    const [isCheckActive, SetIsCheckActive] = useState(false);
-    const [isNotCheckActive, SetIsNotCheckActive] = useState(false);
+    const [isCheckActive, SetIsCheckActive] = useState(value.value === CheckValues.CheckValue);
+    const [isNotCheckActive, SetIsNotCheckActive] = useState(value.value === CheckValues.NotCheckValue);
 
     const setActive = (checkValue: number, setActive: React.Dispatch<React.SetStateAction<boolean>>, setNotActive: React.Dispatch<React.SetStateAction<boolean>>) => {
         setActive(true);
@@ -31,7 +31,10 @@ const UserCard: React.FC<IUserCard> = ({ value }) => {
         <Container>
             <PhotoArea>
                 <Photo src={Image} />
-                <Name>{value.name}</Name>
+                <NameArea>
+                    <Name>{value.name}</Name>
+                    {value.nickname.length > 1 && <b><Name>{value.nickname}</Name></b>}
+                </NameArea>
             </PhotoArea>
             <ControlArea>
                 <CheckIcon
