@@ -8,6 +8,7 @@ const Presence = lazy(() => import('../pages/Presence'));
 const ReportsMain = lazy(() => import('../pages/ReportsMain'));
 const ReportsPerDate = lazy(() => import('../pages/ReportsPerDate'));
 const ReportsPerStudent = lazy(() => import('../pages/ReportsPerStudent'));
+const News = lazy(() => import('../pages/News'));
 
 const Loading = (
   <Container>
@@ -23,6 +24,7 @@ const Routes = () => (
       <Route exact path="/report" component={ReportsMain} />
       <Route exact path="/report/date" component={ReportsPerDate} />
       <Route exact path="/report/student" component={ReportsPerStudent} />
+      <Route exact path="/news" component={News} />
     </Switch>
   </Suspense>
 );

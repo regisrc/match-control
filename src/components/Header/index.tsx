@@ -9,7 +9,7 @@ const Header = ({title, isReturnActive, path} : IHeaderSettings) => {
         <Container>
             {isReturnActive ? <ReturnButton path={path}/> : <CompleteDiv width="59px"/>}
             <Title>{title}</Title>
-            <CompleteDiv width="48px"/>
+            <CompleteDiv width="59px"/>
         </Container>)
 }
 

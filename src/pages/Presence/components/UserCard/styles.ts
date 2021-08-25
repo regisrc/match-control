@@ -8,7 +8,7 @@ export const Container = styled.div`
   justify-content: space-between;
 
   background-color: ${props => props.theme.colors.primaryDark};
-  width: 100%;
+  width: 95%;
   height: 64px;
 
   padding: 10px;

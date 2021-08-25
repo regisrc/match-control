@@ -11,9 +11,11 @@ const Main = () => {
     const titleText = 'Página Inicial';
     const presencePage = 'Presença';
     const reportsPage = 'Relatórios';
+    const newsPage = 'Notícias';
 
     const presencePath = 'presence';
     const reportPath = 'report';
+    const newsPath = 'news';
 
     const Toast = Swal.mixin({
         toast: true,
@@ -39,6 +41,7 @@ const Main = () => {
                 <Content>
                     <Button onClick={() => history.push(presencePath)}>{presencePage}</Button>
                     <Button onClick={() => history.push(reportPath)}>{reportsPage}</Button>
+                    <Button onClick={() => history.push(newsPath)}>{newsPage}</Button>
                 </Content>
             </Container>
         </>

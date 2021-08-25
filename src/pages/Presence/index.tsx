@@ -53,7 +53,7 @@ const Presence = () => {
         <>
             <Header title={titleText} isReturnActive={true} path={""} />
             <Container>
-                <TitleCard />
+                <TitleCard firstLine="Turma 20hrs - Segunda e Quarta" secondLine="31/07/2021"/>
                 {context.current.map((prop: IPresenceProps, index: number) =>
                     <UserCard key={index} value={prop} />
                 )}

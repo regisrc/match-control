@@ -17,9 +17,11 @@ export const Container = styled.div`
     position: fixed;
     top: 0;
     left: 0;
-    padding: 5px;
+    padding: 10px;
 
     background-color: ${props => props.theme.colors.primaryDark};
+
+    z-index: 1000;
 `;
 
 export const Title = styled.h2`

@@ -1,10 +1,15 @@
 import { Container, Description, Date } from './styles';
 
-const TitleCard = () => {
+interface ITitleCard {
+    firstLine: string;
+    secondLine: string;
+}
+
+const TitleCard = ({firstLine, secondLine} : ITitleCard) => {
     return (
         <Container>
-            <Description>Turma 20hrs - Segunda e Quarta</Description>
-            <Date>31/07/2021</Date>
+            <Description>{firstLine}</Description>
+            <Date>{secondLine}</Date>
         </Container>
     );
 };
