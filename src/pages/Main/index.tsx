@@ -26,12 +26,13 @@ const Main = () => {
         didOpen: (toast) => {
             toast.addEventListener('mouseenter', Swal.stopTimer)
             toast.addEventListener('mouseleave', Swal.resumeTimer)
+            toast.addEventListener('click', () => history.push(newsPath))
         }
     })
 
     Toast.fire({
         icon: 'info',
-        title: 'Você tem novos avisos!'
+        title: 'Você tem novos avisos! Clique aqui para acessar'
     })
 
     return (
