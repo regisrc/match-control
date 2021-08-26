@@ -41,6 +41,7 @@ const News = () => {
             <Container>
                 {data.map((value, index) =>
                     <DropDown key={index}
+                        containerSize={"80px"}
                         containerChildren={
                             <ContainerComponent title={value.title} photo={value.photo} />
                         }

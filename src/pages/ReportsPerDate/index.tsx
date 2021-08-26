@@ -87,6 +87,7 @@ const ReportsPerDate = () => {
             <TitleCard firstLine="Turma 20hrs" secondLine="Segunda e Quarta"/>
                 {data.map((value, index) =>
                     <DropDown key={index}
+                        containerSize={"80px"}
                         containerChildren={
                             <ContainerComponent title={value.title} />
                         }

@@ -23,7 +23,7 @@ export const UserArea = styled.div`
     display: flex;
     flex-direction: column;
 
-    align-items: center;
+    align-items: flex-start;
     justify-content: center; 
 
     margin-left: 10px;
@@ -40,7 +40,7 @@ export const ConquestArea = styled.div<IConquestAreaProp>`
     align-items: flex-start;
     justify-content: center; 
 
-    width: 100%;
+    width: 170px;
     height: 24px;
 
     border-radius: 10px;
@@ -110,6 +110,16 @@ export const Value = styled.p`
 interface IReportsPerStudents {
   backgroundColor: string;
 }
+
+export const PhotoNicknameContainer = styled.div`
+    display: flex;
+    flex-direction: column;
+
+    align-items: center;
+    justify-content: center;
+
+    width: 70px;
+`;
 
 export const PhotoContainer = styled.div<IReportsPerStudents>`
     display: flex;

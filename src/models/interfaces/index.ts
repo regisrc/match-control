@@ -24,6 +24,7 @@ export interface IHeaderSettings {
 
 export interface IDropDownProps {
     containerChildren: React.ReactNode;
+    containerSize: string;
     contentChildren: React.ReactNode;
 } 
 
@@ -61,6 +62,7 @@ export interface IReportPerStudentContainerProps {
     size: string;
     name: string;
     nickname: string;
+    photo: string;
     presenceMonth: number;
     presenceTotal: number;
     awayMonth: number;

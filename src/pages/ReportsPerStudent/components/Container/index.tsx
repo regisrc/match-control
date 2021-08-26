@@ -1,6 +1,4 @@
-import { Container, UserArea, NameArea, ConquestArea, NextArea, Value, PhotoContainer, Photo, Bold } from './styles';
-
-import Image from '../../../../assets/photo.jpg';
+import { Container, UserArea, NameArea, ConquestArea, NextArea, Value, PhotoContainer, PhotoNicknameContainer, Photo, Bold } from './styles';
 
 import { IReportPerStudentContainerProp } from '../../../../models/interfaces';
 
@@ -8,13 +6,15 @@ const ContainerComponent = ({ student }: IReportPerStudentContainerProp) => {
 
     return (
         <Container>
-            <PhotoContainer backgroundColor={student.color}>
-                <Photo src={Image} />
-            </PhotoContainer>
+            <PhotoNicknameContainer>
+                <PhotoContainer backgroundColor={student.color}>
+                    <Photo src={student.photo} />
+                </PhotoContainer>
+                {student.nickname.length > 1 && <Bold><Value>{student.nickname}</Value></Bold>}
+            </PhotoNicknameContainer>
             <UserArea>
                 <NameArea>
                     <Value>{student.name}</Value>
-                    {student.nickname.length > 1 && <Bold><Value>{student.nickname}</Value></Bold>}
                 </NameArea>
                 <ConquestArea color={student.color}>
                     <NextArea color={student.nextColor} size={student.size} />

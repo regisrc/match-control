@@ -15,12 +15,12 @@ const ParentComp = ({ childComp } : ParentCompProps) => {
     return <>{childComp}</>;
 };
 
-const DropDown = ({ containerChildren, contentChildren }: IDropDownProps) => {
+const DropDown = ({ containerChildren, contentChildren, containerSize }: IDropDownProps) => {
     const [isActive, setIsActive] = useState(false);
 
     return (
         <>
-            <Container onClick={() => { setIsActive(!isActive) }} height="80px" isActive={isActive}>
+            <Container onClick={() => { setIsActive(!isActive) }} height={containerSize} isActive={isActive}>
                 <ContainerContent>
                     <ParentComp childComp={containerChildren}/>
                 </ContainerContent>
