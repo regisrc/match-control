@@ -74,3 +74,15 @@ export interface IReportPerStudentContentProps {
     day: string;
     status: number;
 }
+
+export interface IMenuComponentProps {
+    title: string;  
+    returnActive: boolean;
+    path: string;
+    buttons: Array<IMenuComponentButtons>;
+}
+
+export interface IMenuComponentButtons {
+    title: string;
+    path: string;
+}

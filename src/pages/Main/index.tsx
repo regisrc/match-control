@@ -8,31 +8,42 @@ import Header from '../../components/Header';
 const Main = () => {
     const history = useHistory();
 
+    const changePage = (page: string) => {
+        Toast.close();
+        history.push(page)
+    }
+
     const titleText = 'Página Inicial';
     const presencePage = 'Presença';
     const reportsPage = 'Relatórios';
     const newsPage = 'Notícias';
+    const registrationPage = 'Cadastros';
 
     const presencePath = 'presence';
     const reportPath = 'report';
     const newsPath = 'news';
+    const registrationPath = 'registration';
 
     const Toast = Swal.mixin({
         toast: true,
         position: 'top-end',
-        showConfirmButton: false,
+        showConfirmButton: true,
+        confirmButtonText: 'Verificar',
         timer: 3000,
         timerProgressBar: true,
         didOpen: (toast) => {
             toast.addEventListener('mouseenter', Swal.stopTimer)
             toast.addEventListener('mouseleave', Swal.resumeTimer)
-            toast.addEventListener('click', () => history.push(newsPath))
         }
     })
 
     Toast.fire({
         icon: 'info',
         title: 'Você tem novos avisos! Clique aqui para acessar'
+    }).then((result) => {
+        if (result.isConfirmed) {
+            history.push(newsPath)
+        }
     })
 
     return (
@@ -40,9 +51,10 @@ const Main = () => {
             <Header title={titleText} isReturnActive={false} />
             <Container>
                 <Content>
-                    <Button onClick={() => history.push(presencePath)}>{presencePage}</Button>
-                    <Button onClick={() => history.push(reportPath)}>{reportsPage}</Button>
-                    <Button onClick={() => history.push(newsPath)}>{newsPage}</Button>
+                    <Button onClick={() => changePage(presencePath)}>{presencePage}</Button>
+                    <Button onClick={() => changePage(reportPath)}>{reportsPage}</Button>
+                    <Button onClick={() => changePage(newsPath)}>{newsPage}</Button>
+                    <Button onClick={() => changePage(registrationPath)}>{registrationPage}</Button>
                 </Content>
             </Container>
         </>
