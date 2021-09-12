@@ -1,4 +1,6 @@
 import styled from 'styled-components';
+import { Accordion, AccordionSummary, AccordionDetails } from '@material-ui/core';
+import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 
 interface IDropDown {
     height: string;
@@ -14,12 +16,6 @@ export const Container = styled.div<IDropDown>`
     background-color: ${props => props.theme.colors.primaryDark};
 
     width: 95%;
-    height: ${props => props.height};
-
-    padding: 20px;
-    margin-bottom: ${props => props.isActive ? "0px" : "10px"};
-
-    cursor: pointer;
 `;
 
 export const ContainerContent = styled.div`
@@ -53,4 +49,23 @@ export const Content = styled.div<IContentEnabled>`
 
     width: 95%;
     margin-bottom: 10px;
+`;
+
+export const ExpansionPanelStyled = styled(Accordion)`
+  width: 95%;
+
+  .MuiAccordionSummary-root {
+    background-color: ${props => props.theme.colors.primaryDark};
+  }
+`;
+
+export const ExpansionPanelSummaryStyled = styled(AccordionSummary)`
+`;
+
+export const ExpansionPanelDetailsStyled = styled(AccordionDetails)`
+  background-color: ${props => props.theme.colors.primaryGray}
+`;
+
+export const ExpandMoreIconStyled = styled(ExpandMoreIcon)`
+  color: ${props => props.theme.colors.primaryYellow}
 `;

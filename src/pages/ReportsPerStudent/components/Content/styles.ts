@@ -165,5 +165,6 @@ export const ProgressContainer = styled.div`
 `;
 
 export const ProgressTitle = styled.h3`
-font-weight: normal;
+  font-weight: normal;
+  color: ${props => props.theme.colors.primaryYellow};
 `

@@ -1,9 +1,6 @@
 import { useState } from 'react';
 
-import { Container, ContainerContent, Icon, Content } from './styles';
-
-import ArrowUp from '../../assets/bxs-up-arrow.svg';
-import ArrowDown from '../../assets/bxs-down-arrow.svg';
+import { ExpansionPanelStyled, ExpansionPanelSummaryStyled, ExpansionPanelDetailsStyled, ExpandMoreIconStyled } from './styles';
 
 import { IDropDownProps } from '../../models/interfaces';
 
@@ -11,25 +8,22 @@ interface ParentCompProps {
     childComp: React.ReactNode;
 }
 
-const ParentComp = ({ childComp } : ParentCompProps) => {
+const ParentComp = ({ childComp }: ParentCompProps) => {
     return <>{childComp}</>;
 };
 
-const DropDown = ({ containerChildren, contentChildren, containerSize }: IDropDownProps) => {
-    const [isActive, setIsActive] = useState(false);
-
+const DropDown = ({ containerChildren, contentChildren }: IDropDownProps) => {
     return (
-        <>
-            <Container onClick={() => { setIsActive(!isActive) }} height={containerSize} isActive={isActive}>
-                <ContainerContent>
-                    <ParentComp childComp={containerChildren}/>
-                </ContainerContent>
-                <Icon src={isActive ? ArrowDown : ArrowUp} />
-            </Container>
-            <Content isActive={isActive}>
-                <ParentComp childComp={contentChildren}/>
-            </Content>
-        </>
+        <ExpansionPanelStyled>
+            <ExpansionPanelSummaryStyled
+                expandIcon={<ExpandMoreIconStyled />}
+            >
+                <ParentComp childComp={containerChildren} />
+            </ExpansionPanelSummaryStyled>
+            <ExpansionPanelDetailsStyled>
+                <ParentComp childComp={contentChildren} />
+            </ExpansionPanelDetailsStyled>
+        </ExpansionPanelStyled>
     );
 };
 

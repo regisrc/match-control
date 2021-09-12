@@ -10,6 +10,8 @@ const ReportsPerDate = lazy(() => import('../pages/ReportsPerDate'));
 const ReportsPerStudent = lazy(() => import('../pages/ReportsPerStudent'));
 const RegistrationMain = lazy(() => import('../pages/RegistrationMain'));
 const News = lazy(() => import('../pages/News'));
+const StudentRegister = lazy(() => import('../pages/StudentRegister'));
+const TeacherRegister = lazy(() => import('../pages/TeacherRegister'));
 
 const Loading = (
   <Container>
@@ -27,6 +29,8 @@ const Routes = () => (
       <Route exact path="/report/student" component={ReportsPerStudent} />
       <Route exact path="/news" component={News} />
       <Route exact path="/registration" component={RegistrationMain} />
+      <Route exact path="/registration/student" component={StudentRegister} />
+      <Route exact path="/registration/teacher" component={TeacherRegister} />
     </Switch>
   </Suspense>
 );

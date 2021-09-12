@@ -1,3 +1,5 @@
+import { SvgIconTypeMap } from '@material-ui/core';
+import { OverridableComponent } from '@material-ui/core/OverridableComponent';
 import { SweetAlertIcon } from 'sweetalert2';
 
 export interface IPresenceProps {
@@ -24,7 +26,6 @@ export interface IHeaderSettings {
 
 export interface IDropDownProps {
     containerChildren: React.ReactNode;
-    containerSize: string;
     contentChildren: React.ReactNode;
 } 
 
@@ -85,4 +86,5 @@ export interface IMenuComponentProps {
 export interface IMenuComponentButtons {
     title: string;
     path: string;
+    icon: OverridableComponent<SvgIconTypeMap>;
 }

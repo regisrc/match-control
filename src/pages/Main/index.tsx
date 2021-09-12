@@ -1,62 +1,100 @@
-import Swal from 'sweetalert2';
+import { useState } from 'react';
 import { useHistory } from "react-router-dom";
 
-import { Container, Content, Button } from './styles';
+import { Container, Content, Button, MaterialButton } from './styles';
+
+import Snackbar from '@material-ui/core/Snackbar';
+import MuiAlert from '@material-ui/lab/Alert';
+import { SnackbarOrigin } from '@material-ui/core/Snackbar';
+
+import DoneOutlineIcon from '@material-ui/icons/DoneOutline';
+import ImportContactsIcon from '@material-ui/icons/ImportContacts';
+import NotificationsIcon from '@material-ui/icons/Notifications';
+import CreateIcon from '@material-ui/icons/Create';
 
 import Header from '../../components/Header';
+import Menu from '../../components/Menu';
+
+import { IMenuComponentProps } from '../../models/interfaces';
 
 const Main = () => {
+    const [state, setState] = useState({
+        open: true,
+        vertical: 'top',
+        horizontal: 'right',
+    });
+
+    const { vertical, horizontal, open } = state;
+
     const history = useHistory();
 
     const changePage = (page: string) => {
-        Toast.close();
         history.push(page)
     }
 
-    const titleText = 'Página Inicial';
-    const presencePage = 'Presença';
-    const reportsPage = 'Relatórios';
-    const newsPage = 'Notícias';
-    const registrationPage = 'Cadastros';
+    const handleClick = (newState: any) => () => {
+        setState({ open: true, ...newState });
+    };
 
-    const presencePath = 'presence';
-    const reportPath = 'report';
-    const newsPath = 'news';
-    const registrationPath = 'registration';
+    const handleClose = () => {
+        setState({ ...state, open: false });
+    };
 
-    const Toast = Swal.mixin({
-        toast: true,
-        position: 'top-end',
-        showConfirmButton: true,
-        confirmButtonText: 'Verificar',
-        timer: 3000,
-        timerProgressBar: true,
-        didOpen: (toast) => {
-            toast.addEventListener('mouseenter', Swal.stopTimer)
-            toast.addEventListener('mouseleave', Swal.resumeTimer)
-        }
-    })
+    const settings : IMenuComponentProps = {
+        "title": "Página Inicial",
+        "returnActive": false,
+        "path": "",
+        "buttons": [
+            {
+                "title": "Presença",
+                "path": "presence",
+                "icon": DoneOutlineIcon
+            },
+            {
+                "title": "Relatórios",
+                "path": "report",
+                "icon": ImportContactsIcon
+            },
+            {
+                "title": "Notícias",
+                "path": "news",
+                "icon": NotificationsIcon
+            },
+            {
+                "title": "Cadastros",
+                "path": "registration",
+                "icon": CreateIcon
+            }
+        ]
+    };
 
-    Toast.fire({
-        icon: 'info',
-        title: 'Você tem novos avisos! Clique aqui para acessar'
-    }).then((result) => {
-        if (result.isConfirmed) {
-            history.push(newsPath)
-        }
-    })
+    const anchor: SnackbarOrigin = {
+        vertical: 'top',
+        horizontal: 'right'
+    }
+
+    function Alert(props: any) {
+        return <MuiAlert action={<MaterialButton variant="outlined" color="primary" onClick={() => changePage(settings.buttons[2].path)}>
+            Visualizar
+        </MaterialButton>} elevation={6} variant="filled" {...props} />;
+    }
 
     return (
         <>
-            <Header title={titleText} isReturnActive={false} />
-            <Container>
-                <Content>
-                    <Button onClick={() => changePage(presencePath)}>{presencePage}</Button>
-                    <Button onClick={() => changePage(reportPath)}>{reportsPage}</Button>
-                    <Button onClick={() => changePage(newsPath)}>{newsPage}</Button>
-                    <Button onClick={() => changePage(registrationPath)}>{registrationPage}</Button>
-                </Content>
-            </Container>
+            <Header title={settings.title} isReturnActive={settings.returnActive} />
+            <Snackbar
+                anchorOrigin={anchor}
+                open={open}
+                onClose={handleClose}
+                autoHideDuration={6000}
+                message="I love snacks"
+                key={vertical + horizontal}
+            >
+                <Alert onClose={handleClose} severity="info"> 
+                    Você tem novas mensagens!
+                </Alert>
+            </Snackbar>
+            <Menu values={settings.buttons} />
         </>
     );
 };

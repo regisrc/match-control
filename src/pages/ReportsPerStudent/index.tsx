@@ -142,7 +142,6 @@ const ReportsPerStudent = () => {
             <Container>
                 {data.map((value, index) =>
                     <DropDown key={index}
-                        containerSize={"100px"}
                         containerChildren={
                             <ContainerComponent student={value} />
                         }

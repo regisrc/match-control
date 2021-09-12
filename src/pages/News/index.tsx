@@ -1,4 +1,4 @@
-import { Container } from './styles';
+import { Container, ExpansionPanelStyled, ExpansionPanelSummaryStyled, ExpansionPanelDetailsStyled } from './styles';
 
 import Image from '../../assets/photo.jpg';
 import Reward from '../../assets/reward.jpg';
@@ -7,6 +7,8 @@ import Header from '../../components/Header';
 import DropDown from '../../components/DropDown';
 import ContainerComponent from './components/Container'
 import ContentComponent from './components/Content'
+
+import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 
 interface INewsData {
     title: string;
@@ -41,13 +43,8 @@ const News = () => {
             <Container>
                 {data.map((value, index) =>
                     <DropDown key={index}
-                        containerSize={"80px"}
-                        containerChildren={
-                            <ContainerComponent title={value.title} photo={value.photo} />
-                        }
-                        contentChildren={
-                            <ContentComponent title={value.content}/>
-                        } />
+                        containerChildren={<ContainerComponent title={value.title} photo={value.photo} />}
+                        contentChildren={<ContentComponent title={value.content} />} />
                 )}
             </Container>
         </>

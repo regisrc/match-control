@@ -1,4 +1,5 @@
 import { createGlobalStyle } from 'styled-components';
+import teste from '../assets/teste.png'
 
 export default createGlobalStyle`
     * {
@@ -9,6 +10,7 @@ export default createGlobalStyle`
     }
     body {
       background: ${props => props.theme.colors.primaryWhite};
+      background-size: cover;
       color: ${props => props.theme.colors.primaryYellow};
       -webkit-font-smoothing: antialiased;
       max-width: 1280px;
