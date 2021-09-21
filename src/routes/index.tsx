@@ -12,6 +12,7 @@ const RegistrationMain = lazy(() => import('../pages/RegistrationMain'));
 const News = lazy(() => import('../pages/News'));
 const StudentRegister = lazy(() => import('../pages/StudentRegister'));
 const TeacherRegister = lazy(() => import('../pages/TeacherRegister'));
+const Profile = lazy(() => import('../pages/Profile'));
 
 const Loading = (
   <Container>
@@ -31,6 +32,7 @@ const Routes = () => (
       <Route exact path="/registration" component={RegistrationMain} />
       <Route exact path="/registration/student" component={StudentRegister} />
       <Route exact path="/registration/teacher" component={TeacherRegister} />
+      <Route exact path="/profile" component={Profile} />
     </Switch>
   </Suspense>
 );

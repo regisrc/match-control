@@ -8,12 +8,18 @@ const TeacherRegister = () => {
     const [name, setName] = useState("");
     const [nickname, setNickName] = useState("");
     const [birthday, setBirthDay] = useState("");
+    const [cpf, setCpf] = useState("");
+    const [email, setEmail] = useState("");
+    const [phone, setPhone] = useState("");
 
     const showData = () => {
         const data = {
             "name": name,
             "nickname": nickname,
-            "birthdate": birthday
+            "birthdate": birthday,
+            "cpf": cpf,
+            "email": email,
+            "phone": phone
         }
 
         console.log(data)
@@ -25,6 +31,9 @@ const TeacherRegister = () => {
             <Container>
                 <Input label="Nome" onChange={(e) => setName(e.target.value)} />
                 <Input label="Apelido" onChange={(e) => setNickName(e.target.value)}/>
+                <Input label="CPF" onChange={(e) => setCpf(e.target.value)}/>
+                <Input label="E-mail" onChange={(e) => setEmail(e.target.value)}/>
+                <Input label="Telefone" onChange={(e) => setPhone(e.target.value)}/>
                 <Input
                     label="Data de Nascimento"
                     type="date"

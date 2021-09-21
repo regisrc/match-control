@@ -11,6 +11,8 @@ import DoneOutlineIcon from '@material-ui/icons/DoneOutline';
 import ImportContactsIcon from '@material-ui/icons/ImportContacts';
 import NotificationsIcon from '@material-ui/icons/Notifications';
 import CreateIcon from '@material-ui/icons/Create';
+import PersonIcon from '@material-ui/icons/Person';
+import SettingsIcon from '@material-ui/icons/Settings';
 
 import Header from '../../components/Header';
 import Menu from '../../components/Menu';
@@ -64,6 +66,16 @@ const Main = () => {
                 "title": "Cadastros",
                 "path": "registration",
                 "icon": CreateIcon
+            },
+            {
+                "title": "Perfil",
+                "path": "profile",
+                "icon": PersonIcon  
+            },
+            {
+                "title": "Configurações",
+                "path": "settings",
+                "icon": SettingsIcon  
             }
         ]
     };
