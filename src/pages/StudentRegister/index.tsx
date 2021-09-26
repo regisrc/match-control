@@ -3,6 +3,9 @@ import { useState } from 'react';
 import { Container, Input, StyledButton as Button } from './styles';
 
 import Header from '../../components/Header';
+import { IStudent } from '../../models/interfaces';
+
+import { SaveStudent } from '../../api/controllers/Student';
 
 const TeacherRegister = () => {
     const [name, setName] = useState("");
@@ -12,8 +15,9 @@ const TeacherRegister = () => {
     const [email, setEmail] = useState("");
     const [phone, setPhone] = useState("");
 
-    const showData = () => {
-        const data = {
+    const showData = async () => {
+        const data : IStudent = {
+            "id": 0,
             "name": name,
             "nickname": nickname,
             "birthdate": birthday,
@@ -22,7 +26,7 @@ const TeacherRegister = () => {
             "phone": phone
         }
 
-        console.log(data)
+        await SaveStudent(data);
     }
 
     return (

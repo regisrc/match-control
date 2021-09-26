@@ -88,3 +88,13 @@ export interface IMenuComponentButtons {
     path: string;
     icon: OverridableComponent<SvgIconTypeMap>;
 }
+
+export interface IStudent {
+    id: number;
+    name: string;
+    nickname: string;
+    birthdate: string;
+    cpf: string;
+    email: string;
+    phone: string;
+}
