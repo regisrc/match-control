@@ -90,11 +90,64 @@ export interface IMenuComponentButtons {
 }
 
 export interface IStudent {
-    id: number;
     name: string;
     nickname: string;
     birthdate: string;
     cpf: string;
     email: string;
     phone: string;
+}
+
+export interface IStudentWithAddress {
+    name: string;
+    nickname: string;
+    birthdate: string;
+    cpf: string;
+    email: string;
+    phone: string;
+    address: IAddress;
+}
+
+export interface IAddress {
+    street: string;
+    number: string;
+    complement: string;
+    district: string;
+    zipCode: string;
+    city: string;
+}
+
+export interface ITeacher {
+    name: string;
+    nickname: string;
+    birthdate: string;
+    cpf: string;
+    email: string;
+    phone: string;
+    commission: string;
+}
+
+export interface IModality {
+    name: string;
+}
+
+export interface IGroup {
+    name: string;
+    teacherId: number;
+    modalityId: number;
+}
+
+export interface INewsResponse {
+    image: string;
+    text: string;
+    title: string;
+    id: string;
+}
+
+export interface INewsNotification{
+    userId: number;
+    isHoliday: boolean;
+    showDate: string;
+    text: string;
+    title: string;
 }

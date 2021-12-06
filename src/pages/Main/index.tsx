@@ -1,47 +1,19 @@
-import { useState } from 'react';
-import { useHistory } from "react-router-dom";
-
-import { Container, Content, Button, MaterialButton } from './styles';
-
-import Snackbar from '@material-ui/core/Snackbar';
-import MuiAlert from '@material-ui/lab/Alert';
-import { SnackbarOrigin } from '@material-ui/core/Snackbar';
-
-import DoneOutlineIcon from '@material-ui/icons/DoneOutline';
-import ImportContactsIcon from '@material-ui/icons/ImportContacts';
+import DoneOutlineIcon from '@material-ui/icons/Done';
+import ImportContactsIcon from '@material-ui/icons/Assessment';
 import NotificationsIcon from '@material-ui/icons/Notifications';
 import CreateIcon from '@material-ui/icons/Create';
 import PersonIcon from '@material-ui/icons/Person';
-import SettingsIcon from '@material-ui/icons/Settings';
+import NewsIcon from '@material-ui/icons/Announcement';
+import ListIcon from '@material-ui/icons/List';
 
 import Header from '../../components/Header';
 import Menu from '../../components/Menu';
+import SnackBar from '../../components/SnackBar';
 
 import { IMenuComponentProps } from '../../models/interfaces';
+import { SnackBarSeverity } from '../../models/enums';
 
 const Main = () => {
-    const [state, setState] = useState({
-        open: true,
-        vertical: 'top',
-        horizontal: 'right',
-    });
-
-    const { vertical, horizontal, open } = state;
-
-    const history = useHistory();
-
-    const changePage = (page: string) => {
-        history.push(page)
-    }
-
-    const handleClick = (newState: any) => () => {
-        setState({ open: true, ...newState });
-    };
-
-    const handleClose = () => {
-        setState({ ...state, open: false });
-    };
-
     const settings : IMenuComponentProps = {
         "title": "Página Inicial",
         "returnActive": false,
@@ -60,7 +32,12 @@ const Main = () => {
             {
                 "title": "Notícias",
                 "path": "news",
-                "icon": NotificationsIcon
+                "icon": NewsIcon
+            },
+            {
+                "title": "Notificações",
+                "path": "notifications",
+                "icon": NotificationsIcon  
             },
             {
                 "title": "Cadastros",
@@ -68,44 +45,17 @@ const Main = () => {
                 "icon": CreateIcon
             },
             {
-                "title": "Perfil",
-                "path": "profile",
-                "icon": PersonIcon  
-            },
-            {
-                "title": "Configurações",
-                "path": "settings",
-                "icon": SettingsIcon  
+                "title": "Listagem",
+                "path": "list",
+                "icon": ListIcon  
             }
         ]
     };
 
-    const anchor: SnackbarOrigin = {
-        vertical: 'top',
-        horizontal: 'right'
-    }
-
-    function Alert(props: any) {
-        return <MuiAlert action={<MaterialButton variant="outlined" color="primary" onClick={() => changePage(settings.buttons[2].path)}>
-            Visualizar
-        </MaterialButton>} elevation={6} variant="filled" {...props} />;
-    }
-
     return (
         <>
             <Header title={settings.title} isReturnActive={settings.returnActive} />
-            <Snackbar
-                anchorOrigin={anchor}
-                open={open}
-                onClose={handleClose}
-                autoHideDuration={6000}
-                message="I love snacks"
-                key={vertical + horizontal}
-            >
-                <Alert onClose={handleClose} severity="info"> 
-                    Você tem novas mensagens!
-                </Alert>
-            </Snackbar>
+            <SnackBar alertMessage={"Você tem novas mensagens!"} showButton={true} buttonPath={settings.buttons[2].path} severity={SnackBarSeverity.Info} buttonMessage={"Visualizar"} snackBarOpen={true}/>
             <Menu values={settings.buttons} />
         </>
     );

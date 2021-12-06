@@ -30,10 +30,6 @@ export const Title = styled.h2`
     color: ${props => props.theme.colors.primaryWhite}
 `;
 
-export const CompleteDiv = styled.div<ICompleteDivControl>`
+export const CompleteDiv = styled.img<ICompleteDivControl>`
     width: ${props => props.width};
-
-    @media (max-width: 720px) {
-        width: 0px;
-    }
 `;

@@ -16,3 +16,10 @@ export enum BandColor {
     Black = "#000000",
     Red = "#b11116"
 }
+
+export enum SnackBarSeverity {
+    Error = "error",
+    Warning = "warning",
+    Success = "success",
+    Info = "info"
+}

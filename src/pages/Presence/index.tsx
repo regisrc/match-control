@@ -1,57 +1,50 @@
-import { useContext, useRef } from 'react';
-import Swal from 'sweetalert2';
+import { useContext, useRef, useState } from 'react';
 
 import Header from '../../components/Header';
 import Button from '../../components/Button';
 
 import TitleCard from './components/TitleCard';
 import UserCard from './components/UserCard';
+import SnackBar from '../../components/SnackBar';
 
 import { Container } from './styles';
 
-import { IPresenceProps, IAlertType } from '../../models/interfaces';
+import { IPresenceProps } from '../../models/interfaces';
+import { SnackBarSeverity } from '../../models/enums';
 
 import { Users } from '../../context/Presence';
 
 const Presence = () => {
+    const [state, setState] = useState({
+        open: false,
+        severity: "",
+        message: "",
+    });
+
     const titleText = 'Lista de Presença';
     const context = useRef(useContext(Users));
 
-    const Toast = Swal.mixin({
-        toast: true,
-        position: 'top-end',
-        showConfirmButton: false,
-        timer: 3000,
-        timerProgressBar: true,
-        didOpen: (toast) => {
-            toast.addEventListener('mouseenter', Swal.stopTimer)
-            toast.addEventListener('mouseleave', Swal.resumeTimer)
-        }
-    })
+    const handleSuccess = () => {
+        setState({ open: true, severity: SnackBarSeverity.Success, message: "Salvo com sucesso!" });
+    };
+
+    const handleError = () => {
+        setState({ open: true, severity: SnackBarSeverity.Error, message: "Preencha todos os campos!"});
+    };
 
     const ButtonClick = () => {
-        const status:IAlertType[]  = [
-            {
-                "icon": 'success',
-                "title": "Salvo com sucesso!"
-            },
-            {
-                "icon": 'error',
-                "title": "Preencha todos os campos!"
-            }
-        ]
+        const index: boolean = context.current.some(x => x.value === 0) ? false : true;
 
-        const index: number = context.current.some(x => x.value === 0) ? 1 : 0;
-
-        Toast.fire({
-            icon: status[index].icon,
-            title: status[index].title
-        })
+        if(index) 
+            handleSuccess()
+        else 
+            handleError();
     }
 
     return (
         <>
             <Header title={titleText} isReturnActive={true} path={""} />
+            <SnackBar showButton={false} alertMessage={state.message} severity={state.severity} snackBarOpen={state.open} UseStateOpenControl={setState}/>
             <Container>
                 <TitleCard firstLine="Turma 20hrs - Segunda e Quarta" secondLine="31/07/2021"/>
                 {context.current.map((prop: IPresenceProps, index: number) =>

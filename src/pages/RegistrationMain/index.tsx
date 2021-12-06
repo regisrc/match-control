@@ -2,8 +2,13 @@ import Header from '../../components/Header';
 import Menu from '../../components/Menu';
 
 import { IMenuComponentProps } from '../../models/interfaces';
+
 import SchoolIcon from '@material-ui/icons/School';
-import SupervisorAccountIcon from '@material-ui/icons/SupervisorAccount';
+import DirectionsRunIcon from '@material-ui/icons/DirectionsRun';
+import SportsKabaddiIcon from '@material-ui/icons/SportsKabaddi';
+import GroupsIcon from '@material-ui/icons/Group';
+import NotificationsIcon from '@material-ui/icons/Notifications';
+import NewsIcon from '@material-ui/icons/Announcement';
 
 const RegistrationMain = () => {
     const settings : IMenuComponentProps = {
@@ -19,7 +24,27 @@ const RegistrationMain = () => {
             {
                 "title": "Professor",
                 "path": "registration/teacher",
-                "icon": SupervisorAccountIcon
+                "icon": DirectionsRunIcon
+            },
+            {
+                "title": "Modalidade",
+                "path": "registration/modality",
+                "icon": SportsKabaddiIcon
+            },
+            {
+                "title": "Turma",
+                "path": "registration/group",
+                "icon": GroupsIcon
+            },
+            {
+                "title": "Notícias",
+                "path": "registration/news",
+                "icon": NewsIcon
+            },
+            {
+                "title": "Notificações",
+                "path": "registration/notifications",
+                "icon": NotificationsIcon
             }
         ]
     };

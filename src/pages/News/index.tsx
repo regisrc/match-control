@@ -1,4 +1,6 @@
-import { Container, ExpansionPanelStyled, ExpansionPanelSummaryStyled, ExpansionPanelDetailsStyled } from './styles';
+import { useEffect, useState } from 'react'
+import { AxiosResponse } from "axios";
+import { Container } from './styles';
 
 import Image from '../../assets/photo.jpg';
 import Reward from '../../assets/reward.jpg';
@@ -10,30 +12,22 @@ import ContentComponent from './components/Content'
 
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 
-interface INewsData {
-    title: string;
-    photo: string;
-    content: string;
-}
+import { INewsResponse } from '../../models/interfaces';
+
+import { GetNews } from '../../api/controllers/News';
 
 const News = () => {
-    const data: INewsData[] = [
-        {
-            "title": "Uma mensagem para te motivar!",
-            "photo": Image,
-            "content": "Continue assim, você está indo bem!"
-        },
-        {
-            "title": "Mais uma etapa concluída!",
-            "photo": Reward,
-            "content": "Parabéns, aguarde instruções com o seu professor, em breve novidades!"
-        },
-        {
-            "title": "Feriado se aproximando, fique atento",
-            "photo": Image,
-            "content": "No dia 7 de setembro teremos um feriado, fique atento e descanse :)"
-        }
-    ]
+    const [call, setCall] = useState<AxiosResponse | null | void>(null);
+
+    useEffect(() => {
+        const asyncCall = async () => {
+            const result = await GetNews()
+
+            setCall(result)
+        };
+    
+        asyncCall();
+    }, [])
 
     const titleText = 'Notícias';
 
@@ -41,10 +35,10 @@ const News = () => {
         <>
             <Header title={titleText} isReturnActive={true} path={""} />
             <Container>
-                {data.map((value, index) =>
+                {call?.data.map((value: INewsResponse, index: number) =>
                     <DropDown key={index}
-                        containerChildren={<ContainerComponent title={value.title} photo={value.photo} />}
-                        contentChildren={<ContentComponent title={value.content} />} />
+                        containerChildren={<ContainerComponent title={value.title} photo={value.image} />}
+                        contentChildren={<ContentComponent title={value.text} />} />
                 )}
             </Container>
         </>

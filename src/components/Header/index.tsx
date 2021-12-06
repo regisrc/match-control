@@ -1,6 +1,7 @@
 import { Container, Title, CompleteDiv } from './styles';
 
 import ReturnButton from '../ReturnButton'
+import Image from '../../assets/logo-vo2.png';
 
 import { IHeaderSettings } from '../../models/interfaces';
 
