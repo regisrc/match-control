@@ -43,7 +43,7 @@ const Presence = () => {
 
     return (
         <>
-            <Header title={titleText} isReturnActive={true} path={""} />
+            <Header title={titleText} isReturnActive={true} path={"/main"} />
             <SnackBar showButton={false} alertMessage={state.message} severity={state.severity} snackBarOpen={state.open} UseStateOpenControl={setState}/>
             <Container>
                 <TitleCard firstLine="Turma 20hrs - Segunda e Quarta" secondLine="31/07/2021"/>

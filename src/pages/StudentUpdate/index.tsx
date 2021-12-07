@@ -40,7 +40,7 @@ const StudentUpdate = () => {
 
     const [name, setName] = useState("");
     const [nickname, setNickName] = useState("");
-    const [group, setGroup] = useState("");
+    const [group, setGroup] = useState([]);
     const [birthday, setBirthDay] = useState("");
     const [cpf, setCpf] = useState("");
     const [email, setEmail] = useState("");
@@ -75,6 +75,7 @@ const StudentUpdate = () => {
             "nickname": nickname,
             "birthdate": birthday,
             "cpf": cpf.replaceAll('.', '').replace('-', ''),
+            "groups": group,
             "email": email,
             "phone": phone.replace('-', "").replace('(', "").replace(')', "").replace(' ', '')
         }

@@ -10,7 +10,7 @@ const ReportsMain = () => {
     const settings : IMenuComponentProps = {
         "title": "Relatórios",
         "returnActive": true,
-        "path": "",
+        "path": "/main",
         "buttons": [
             {
                 "title": "Por data",

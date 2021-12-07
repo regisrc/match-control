@@ -96,6 +96,7 @@ export interface IStudent {
     cpf: string;
     email: string;
     phone: string;
+    groups: Array<string>;
 }
 
 export interface IStudentWithAddress {
@@ -133,6 +134,7 @@ export interface IModality {
 
 export interface IGroup {
     name: string;
+    students: Array<number>;
     teacherId: number;
     modalityId: number;
 }

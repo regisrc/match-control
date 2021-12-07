@@ -54,6 +54,7 @@ const GroupUpdate = () => {
     const showData = async () => {
         const data: IGroup = {
             "name": name,
+            "students": [], 
             "modalityId": modality.id,
             "teacherId": teacher.id
         }

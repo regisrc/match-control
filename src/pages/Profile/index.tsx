@@ -80,7 +80,7 @@ const Profile = () => {
             }
         }
 
-        PutStudent(data, 1)
+        // PutStudent(data, 1)
     }
 
     useEffect(() => {
@@ -111,7 +111,7 @@ const Profile = () => {
 
     return (
         <>
-            <Header title={"Perfil"} isReturnActive={true} path={""} />
+            <Header title={"Perfil"} isReturnActive={true} path={"/main"} />
             <Container>
                 <Box sx={{ width: '95%' }}>
                     <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>

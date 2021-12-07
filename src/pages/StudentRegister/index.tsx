@@ -34,7 +34,7 @@ const StudentRegister = () => {
 
     const [name, setName] = useState("");
     const [nickname, setNickName] = useState("");
-    const [group, setGroup] = useState("");
+    const [group, setGroup] = useState([]);
     const [birthday, setBirthDay] = useState("");
     const [cpf, setCpf] = useState("");
     const [email, setEmail] = useState("");
@@ -57,6 +57,7 @@ const StudentRegister = () => {
             "nickname": nickname,
             "birthdate": birthday,
             "cpf": cpf.replaceAll('.', '').replace('-', ''),
+            "groups": group,
             "email": email,
             "phone": phone.replace('-', "").replace('(', "").replace(')', "").replace(' ', '')
         }
@@ -83,6 +84,12 @@ const StudentRegister = () => {
         return temp;
     }
 
+    function arrayRemove(arr: any, value: any) { 
+        return arr.filter(function(ele: any){ 
+            return ele != value; 
+        });
+    }
+
     return (
         <>
             <Header title={"Registro de aluno"} isReturnActive={true} path={"/registration"} />
@@ -96,6 +103,8 @@ const StudentRegister = () => {
                         selectedValues={selectedValues} 
                         placeholder="Turmas"
                         displayValue="name"
+                        onSelect={(sl: any, si: any)  => setGroup(sl.map((x: any) => x.id))}
+                        onRemove={(sl: any, si: any)  => setGroup(arrayRemove(sl, si.id).map((x: any) => x.id))}
                     />
                 </MultiSelectDiv>
                 <Mask

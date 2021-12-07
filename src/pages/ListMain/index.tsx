@@ -14,7 +14,7 @@ const ListMain = () => {
     const settings : IMenuComponentProps = {
         "title": "Listagem",
         "returnActive": true,
-        "path": "",
+        "path": "main",
         "buttons": [
             {
                 "title": "Aluno",

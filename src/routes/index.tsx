@@ -3,6 +3,7 @@ import { Switch, Route } from 'react-router-dom';
 
 import { Container, ReactLoadingContainer } from './styles';
 
+const Login = lazy(() => import('../pages/Login'));
 const Main = lazy(() => import('../pages/Main'));
 const Presence = lazy(() => import('../pages/Presence'));
 const ReportsMain = lazy(() => import('../pages/ReportsMain'));
@@ -41,7 +42,8 @@ const Loading = (
 const Routes = () => (
   <Suspense fallback={Loading}>
     <Switch>
-      <Route exact path="/" component={Main} />
+      <Route exact path="/" component={Login} />
+      <Route exact path="/main" component={Main} />
       <Route exact path="/presence" component={Presence} />
       <Route exact path="/report" component={ReportsMain} />
       <Route exact path="/report/date" component={ReportsPerDate} />

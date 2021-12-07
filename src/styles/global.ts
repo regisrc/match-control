@@ -9,7 +9,7 @@ export default createGlobalStyle`
       outline: 0;
     }
     body {
-      background: ${props => props.theme.colors.primaryWhite};
+      background: ${props => props.theme.colors.backgroundTheme};
       background-size: cover;
       color: ${props => props.theme.colors.primaryYellow};
       -webkit-font-smoothing: antialiased;

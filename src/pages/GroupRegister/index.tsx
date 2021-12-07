@@ -25,6 +25,7 @@ const GroupRegister = () => {
     const [callModality, setCallModality] = useState<AxiosResponse | null | void>(null);
 
     const [name, setName] = useState("");
+    const [student, setStudent] = useState([]);
     const [modality, setModality] = useState(callModality?.data[0]);
     const [teacher, setTeacher] = useState(callTeacher?.data[0]);
     const [selectedValues, setSelectedValues] = useState([])
@@ -39,7 +40,7 @@ const GroupRegister = () => {
             setCallTeacher(resultTeacher);
             setCallModality(resultModality);
         };
-    
+       
         asyncCall();
     }, [])
 
@@ -54,11 +55,18 @@ const GroupRegister = () => {
     const showData = async () => {
         const data: IGroup = {
             "name": name,
+            "students": student,
             "modalityId": modality.id,
             "teacherId": teacher.id
         }
 
         await SaveGroup(data).then(handleSuccess).catch(() => handleError("Ocorreu um problema!"));
+    }
+
+    function arrayRemove(arr: any, value: any) { 
+        return arr.filter(function(ele: any){ 
+            return ele != value; 
+        });
     }
 
     return (
@@ -71,6 +79,8 @@ const GroupRegister = () => {
                     <MultiSelect
                         options={callStudents?.data}
                         selectedValues={selectedValues}
+                        onSelect={(sl: any, si: any)  => setStudent(sl.map((x: any) => x.id))}
+                        onRemove={(sl: any, si: any)  => setStudent(arrayRemove(sl, si.id).map((x: any) => x.id))}
                         placeholder="Alunos"
                         displayValue="name"
                     />

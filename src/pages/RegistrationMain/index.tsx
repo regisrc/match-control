@@ -14,7 +14,7 @@ const RegistrationMain = () => {
     const settings : IMenuComponentProps = {
         "title": "Cadastros",
         "returnActive": true,
-        "path": "",
+        "path": "/main",
         "buttons": [
             {
                 "title": "Aluno",

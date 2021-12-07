@@ -33,7 +33,7 @@ const Notifications = () => {
 
     return (
         <>
-            <Header title={titleText} isReturnActive={true} path={""} />
+            <Header title={titleText} isReturnActive={true} path={"/main"} />
             <Container>
                 {call?.data.map((value: INewsResponse, index: number) =>
                     <DropDown key={index}
