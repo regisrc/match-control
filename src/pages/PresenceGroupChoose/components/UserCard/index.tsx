@@ -8,8 +8,7 @@ const UserCard = ({ value } : any) => {
         <Container onClick={() => history.push(`/presenceGroup/presence/${value.id}`)}>
             <PhotoArea>
                 <NameArea>
-                    <Name>{value.name}</Name>
-                    <Name>{value.modality.name}</Name>
+                    <Name>{value.name}</Name>   
                 </NameArea>
             </PhotoArea>
         </Container>
