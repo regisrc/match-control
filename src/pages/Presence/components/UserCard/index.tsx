@@ -10,11 +10,10 @@ import { theme } from '../../../../styles/theme';
 import CheckIcon from '../../../../components/CheckIcon';
 
 import { CheckValues } from '../../../../models/enums';
-import { IUserCard } from '../../../../models/interfaces';
 
 import { Users } from '../../../../context/Presence';
 
-const UserCard: React.FC<IUserCard> = ({ value }) => {
+const UserCard = ({ value } : any) => {
     const context = useContext(Users);
 
     const [isCheckActive, SetIsCheckActive] = useState(value.value === CheckValues.CheckValue);
@@ -24,13 +23,13 @@ const UserCard: React.FC<IUserCard> = ({ value }) => {
         setActive(true);
         setNotActive(false);
 
-        context.find(x => x.id === value.id)!.value = checkValue;
+        value.active = checkValue === CheckValues.CheckValue;
     }
 
     return (
         <Container>
             <PhotoArea>
-                <Photo src={Image} />
+                {/* <Photo src={Image} /> */}
                 <NameArea>
                     <Name>{value.name}</Name>
                     {value.nickname.length > 1 && <b><Name>{value.nickname}</Name></b>}

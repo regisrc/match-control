@@ -74,6 +74,9 @@ const StudentRegister = () => {
         var temp = true;
 
         for (const [key, value] of Object.entries(data)) {
+            if (key === "groups")
+                continue;
+
             if (value.length === 0) {
                 temp = false;
 
@@ -92,7 +95,7 @@ const StudentRegister = () => {
 
     return (
         <>
-            <Header title={"Registro de aluno"} isReturnActive={true} path={"/registration"} />
+            <Header title={"Registro de aluno"} isReturnActive={true} path={"/list/student"} />
             <SnackBar showButton={false} alertMessage={state.message} severity={state.severity} snackBarOpen={state.open} UseStateOpenControl={setState} />
             <Container>
                 <Input label="Nome" onChange={(e) => setName(e.target.value)} />

@@ -12,7 +12,7 @@ import NewsIcon from '@material-ui/icons/Announcement';
 
 const ListMain = () => {
     const settings : IMenuComponentProps = {
-        "title": "Listagem",
+        "title": "Cadastros",
         "returnActive": true,
         "path": "main",
         "buttons": [

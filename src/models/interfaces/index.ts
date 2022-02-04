@@ -153,3 +153,14 @@ export interface INewsNotification{
     text: string;
     title: string;
 }
+
+export interface IAttendance {
+    date: string;
+    groupId: number;
+    students: Array<IAttendanceStudent>
+}
+
+export interface IAttendanceStudent {
+    id: number;
+    present: boolean;
+}

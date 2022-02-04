@@ -71,7 +71,7 @@ const GroupRegister = () => {
 
     return (
         <>
-            <Header title={"Registro de turma"} isReturnActive={true} path={"/registration"} />
+            <Header title={"Registro de turma"} isReturnActive={true} path={"/list/group"} />
             <SnackBar showButton={false} alertMessage={state.message} severity={state.severity} snackBarOpen={state.open} UseStateOpenControl={setState} />
             <Container>
                 <Input label="Nome" onChange={(e) => setName(e.target.value)}/>

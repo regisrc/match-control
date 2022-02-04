@@ -1,4 +1,4 @@
-import { useContext, useRef, useState } from 'react';
+import { useContext, useEffect, useRef, useState } from 'react';
 
 import Header from '../../components/Header';
 import Button from '../../components/Button';
@@ -9,10 +9,13 @@ import SnackBar from '../../components/SnackBar';
 
 import { Container } from './styles';
 
-import { IPresenceProps } from '../../models/interfaces';
+import { IAttendance, IAttendanceStudent, IPresenceProps } from '../../models/interfaces';
 import { SnackBarSeverity } from '../../models/enums';
 
 import { Users } from '../../context/Presence';
+import { useParams } from 'react-router';
+import { GetOneGroup, Attendance } from '../../api/controllers/Group';
+import { AxiosResponse } from 'axios';
 
 const Presence = () => {
     const [state, setState] = useState({
@@ -21,10 +24,53 @@ const Presence = () => {
         message: "",
     });
 
+    const [call, setCall] = useState<AxiosResponse | null | void>(null);
+
+    const params = useParams<any>();
+
+    useEffect(() => {
+        const asyncCall = async () => {
+            const result = await GetOneGroup(params.id)
+
+            setCall(result)
+        }; 
+    
+        asyncCall();
+    }, [params])
+
     const titleText = 'Lista de Presença';
     const context = useRef(useContext(Users));
 
     const handleSuccess = () => {
+        var studentsData: Array<IAttendanceStudent> = [];
+
+        call?.data.students.map((studentdata: any) => {
+            const temp: IAttendanceStudent = {
+                id: studentdata.id,
+                present: studentdata.active
+            }
+
+            studentsData.push(temp)
+        })
+
+        
+        var currentdate = new Date(); 
+        var currentMonth = currentdate.getMonth()+1;
+        var datetime = currentdate.getFullYear() + "-"
+                + (currentMonth.toString().length === 1 ? "0" + currentMonth : currentMonth)  + "-" 
+                + currentdate.getDate() + "T" 
+                + currentdate.getHours() + ":"  
+                + currentdate.getMinutes() + ":" 
+                + (currentdate.getSeconds().toString().length === 1 ? "0" + currentdate.getSeconds() : currentdate.getSeconds());
+
+        const data: IAttendance = {
+            date: datetime, 
+            groupId: call?.data.id,
+            students: studentsData
+        }
+
+        Attendance(data)
+
         setState({ open: true, severity: SnackBarSeverity.Success, message: "Salvo com sucesso!" });
     };
 
@@ -33,21 +79,21 @@ const Presence = () => {
     };
 
     const ButtonClick = () => {
-        const index: boolean = context.current.some(x => x.value === 0) ? false : true;
+        const index: boolean = !call?.data.students.some((x:any) => x.active === undefined);
 
         if(index) 
             handleSuccess()
         else 
             handleError();
     }
-
+    
     return (
         <>
-            <Header title={titleText} isReturnActive={true} path={"/main"} />
+            <Header title={titleText} isReturnActive={true} path={"/presenceGroup"} />
             <SnackBar showButton={false} alertMessage={state.message} severity={state.severity} snackBarOpen={state.open} UseStateOpenControl={setState}/>
             <Container>
-                <TitleCard firstLine="Turma 20hrs - Segunda e Quarta" secondLine="31/07/2021"/>
-                {context.current.map((prop: IPresenceProps, index: number) =>
+                <TitleCard firstLine={call?.data.name} secondLine={call?.data.modality.name}/>
+                {call?.data.students.map((prop: any, index: number) => 
                     <UserCard key={index} value={prop} />
                 )}
                 <Button onClick={() => ButtonClick()} text={"Gravar"}/>

@@ -7,6 +7,7 @@ import Header from '../../components/Header';
 import DropDown from '../../components/DropDown';
 import ContainerComponent from './components/Container';
 import ContentComponent from './components/Content';
+import FloatAddButton from '../../components/FloatAddButton';
 
 import { GetStudents } from '../../api/controllers/Student';
 
@@ -38,6 +39,7 @@ const StudentList = () => {
                         contentChildren={<ContentComponent objeto={value} />} />
                 )}
             </Container>
+            <FloatAddButton url={'/registration/student'} />
         </>
     );
 }

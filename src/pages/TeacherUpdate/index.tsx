@@ -117,7 +117,7 @@ const TeacherUpdate = () => {
                     onChange={(e) => setPhone(e.target.value)} >
                     {() => <Input label="Telefone" />}
                 </Mask>
-                <Input value={comission} label="Comissão" onChange={(e) => setCommission(e.target.value)}/>
+                <Input value={comission} label="Comissão (apenas numérico sem %)" onChange={(e) => setCommission(e.target.value)}/>
                 <Input
                     value={birthday}
                     label="Data de Nascimento"

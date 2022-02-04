@@ -10,6 +10,8 @@ import ContentComponent from './components/Content';
 
 import { GetNotifications } from '../../api/controllers/Notifications';
 
+import FloatAddButton from '../../components/FloatAddButton';
+
 const NotificationList = () => {
     const titleText = 'Listagem de notificações';
 
@@ -38,6 +40,7 @@ const NotificationList = () => {
                         contentChildren={<ContentComponent objeto={value} />} />
                 )}
             </Container>
+            <FloatAddButton url={'/registration/notifications'} />
         </>
     );
 }

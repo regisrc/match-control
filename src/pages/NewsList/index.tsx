@@ -10,6 +10,8 @@ import ContentComponent from './components/Content';
 
 import { GetNews } from '../../api/controllers/News';
 
+import FloatAddButton from '../../components/FloatAddButton';
+
 const NewsList = () => {
     const titleText = 'Listagem de noticias';
 
@@ -38,6 +40,7 @@ const NewsList = () => {
                         contentChildren={<ContentComponent objeto={value} />} />
                 )}
             </Container>
+            <FloatAddButton url={'/registration/news'} />
         </>
     );
 }

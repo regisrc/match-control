@@ -5,6 +5,7 @@ import { Container, ReactLoadingContainer } from './styles';
 
 const Login = lazy(() => import('../pages/Login'));
 const Main = lazy(() => import('../pages/Main'));
+const PresenceGroup = lazy(() => import('../pages/PresenceGroupChoose'));
 const Presence = lazy(() => import('../pages/Presence'));
 const ReportsMain = lazy(() => import('../pages/ReportsMain'));
 const ReportsPerDate = lazy(() => import('../pages/ReportsPerDate'));
@@ -44,7 +45,8 @@ const Routes = () => (
     <Switch>
       <Route exact path="/" component={Login} />
       <Route exact path="/main" component={Main} />
-      <Route exact path="/presence" component={Presence} />
+      <Route exact path="/presenceGroup" component={PresenceGroup} />
+      <Route exact path="/presenceGroup/presence/:id" component={Presence} />
       <Route exact path="/report" component={ReportsMain} />
       <Route exact path="/report/date" component={ReportsPerDate} />
       <Route exact path="/report/student" component={ReportsPerStudent} />

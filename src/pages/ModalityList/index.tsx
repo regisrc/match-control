@@ -10,6 +10,8 @@ import ContentComponent from './components/Content';
 
 import { GetModality } from '../../api/controllers/Modality';
 
+import FloatAddButton from '../../components/FloatAddButton';
+
 const ModalityList = () => {
     const titleText = 'Listagem de modalidade';
 
@@ -38,6 +40,7 @@ const ModalityList = () => {
                         contentChildren={<ContentComponent objeto={value} />} />
                 )}
             </Container>
+            <FloatAddButton url={'/registration/modality'} />
         </>
     );
 }

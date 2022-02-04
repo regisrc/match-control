@@ -10,6 +10,8 @@ import ContentComponent from './components/Content';
 
 import { GetTeacher } from '../../api/controllers/Teacher';
 
+import FloatAddButton from '../../components/FloatAddButton';
+
 const TeacherList = () => {
     const titleText = 'Listagem de professores';
 
@@ -38,6 +40,7 @@ const TeacherList = () => {
                         contentChildren={<ContentComponent objeto={value} />} />
                 )}
             </Container>
+            <FloatAddButton url={'/registration/teacher'} />
         </>
     );
 }

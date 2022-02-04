@@ -1,7 +1,7 @@
 import { Container, Title } from './styles';
 
-const ContainerComponent = (objeto : any) => {
-    console.log(objeto.objeto)
+const ContainerComponent = (objeto : any, group : any) => {
+    console.log(group)
 
     return (
         <Container>

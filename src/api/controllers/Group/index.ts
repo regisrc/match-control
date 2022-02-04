@@ -1,4 +1,4 @@
-import { IModality } from '../../../models/interfaces';
+import { IAttendance, IModality } from '../../../models/interfaces';
 import api from '../../index';
 
 export const SaveGroup = async (
@@ -16,8 +16,21 @@ export const GetGroup = async () => {
     );
   };
 
+  export const GetOneGroup = async (id: number) => {
+    return await api.get(
+      `/Group/${id}`
+    );
+  };
+
   export const DeleteGroup = async (id: number) => {
     return await api.delete(
       `/Group/${id}`
+    );
+  };
+
+  export const Attendance = async (params: IAttendance) => {
+    return await api.post(
+      `/Group/attendance`,
+      params
     );
   };

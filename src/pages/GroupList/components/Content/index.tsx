@@ -13,13 +13,19 @@ const ContentComponent = (objeto : any) => {
         window.location.reload();
       }
 
+    console.log(objeto.objeto)
+
     return (
         <Container>
-            <Content><b>Id:</b> {objeto.objeto.id}</Content>
-            <Content><b>Nome:</b> {objeto.objeto.name}</Content>
-            <Content><b>Professor:</b> {objeto.objeto.teacher}</Content>
-            <Content><b>Modalidade:</b> {objeto.objeto.modality}</Content>
-            <Content><b>Alunos:</b> {objeto.objeto.students}</Content>
+            <Content><b>Id:</b> {objeto.objeto.modality.id}</Content>
+            <Content><b>Nome:</b> {objeto.objeto.modality.name}</Content>
+            <Content><b>Professor:</b> {objeto.objeto.teacher.name}</Content>
+            <Content><b>Alunos: </b></Content>
+            <Content><b>Nome - Apelido</b></Content>
+            {
+            objeto.objeto.students.map((value: any, index: number) => 
+                <Content>{value.name} - {value.nickname}</Content>
+            )}
             <Content>
                 <b>Opções:</b>
                 <Create onClick={() => history.push(`/update/group/${objeto.objeto.id}`)}/>

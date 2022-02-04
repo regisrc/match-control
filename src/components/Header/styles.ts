@@ -27,7 +27,11 @@ export const Container = styled.div`
 `;
 
 export const Title = styled.h2`
-    color: ${props => props.theme.colors.primaryWhite}
+    color: ${props => props.theme.colors.primaryWhite};
+
+    @media (max-width: 720px) {
+        font-size: 16px;
+    }
 `;
 
 export const CompleteDiv = styled.img<ICompleteDivControl>`

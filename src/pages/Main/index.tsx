@@ -21,7 +21,7 @@ const Main = () => {
         "buttons": [
             {
                 "title": "Presença",
-                "path": "presence",
+                "path": "presencegroup",
                 "icon": DoneOutlineIcon
             },
             {
@@ -41,11 +41,6 @@ const Main = () => {
             },
             {
                 "title": "Cadastros",
-                "path": "registration",
-                "icon": CreateIcon
-            },
-            {
-                "title": "Listagem",
                 "path": "list",
                 "icon": ListIcon  
             }

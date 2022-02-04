@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const axiosInstance = axios.create({
-  baseURL: "https://app.thematchcontrol.com.br/api",
+  baseURL: "http://10.1.1.20/api",
   headers: {
     'Access-Control-Allow-Origin': '*'
   }

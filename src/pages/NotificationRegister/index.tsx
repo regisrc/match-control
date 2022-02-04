@@ -65,7 +65,7 @@ const NotificationRegister = () => {
 
     return (
         <>
-            <Header title={"Registro de Notificações"} isReturnActive={true} path={"/registration"} />
+            <Header title={"Registro de Notificações"} isReturnActive={true} path={"/list/notifications"} />
             <SnackBar showButton={false} alertMessage={state.message} severity={state.severity} snackBarOpen={state.open} UseStateOpenControl={setState} />
             <Container>
                 <Input label="Titulo" onChange={(e) => setTitle(e.target.value)} />

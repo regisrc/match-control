@@ -9,8 +9,9 @@ import ContainerComponent from './components/Container';
 import ContentComponent from './components/Content';
 
 import { GetGroup } from '../../api/controllers/Group';
+import FloatAddButton from '../../components/FloatAddButton';
 
-const GroupList = () => {
+const PresenceGroupChoose = () => {
     const titleText = 'Listagem de turmas';
 
     const [call, setCall] = useState<AxiosResponse | null | void>(null);
@@ -38,8 +39,9 @@ const GroupList = () => {
                         contentChildren={<ContentComponent objeto={value} />} />
                 )}
             </Container>
+            <FloatAddButton url={'/registration/group'} />
         </>
     );
 }
 
-export default GroupList;
+export default PresenceGroupChoose;

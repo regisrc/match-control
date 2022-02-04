@@ -71,7 +71,7 @@ const TeacherRegister = () => {
 
     return (
         <>
-            <Header title={"Registro de professor"} isReturnActive={true} path={"/registration"} />
+            <Header title={"Registro de professor"} isReturnActive={true} path={"/list/teacher"} />
             <SnackBar showButton={false} alertMessage={state.message} severity={state.severity} snackBarOpen={state.open} UseStateOpenControl={setState} />
             <Container>
             <Input label="Nome" onChange={(e) => setName(e.target.value)} />
@@ -89,7 +89,7 @@ const TeacherRegister = () => {
                     onChange={(e) => setPhone(e.target.value)} >
                     {() => <Input label="Telefone" />}
                 </Mask>
-                <Input label="Comissão" onChange={(e) => setCommission(e.target.value)}/>
+                <Input label="Comissão (apenas numérico sem %)" onChange={(e) => setCommission(e.target.value)}/>
                 <Input
                     label="Data de Nascimento"
                     type="date"
