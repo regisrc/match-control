@@ -49,10 +49,10 @@ const App = () => {
     authority:
       "https://app.thematchcontrol.com.br:8443/realms/tmc/.well-known/openid-configuration",
     client_id: "tmc-app-client",
-    redirect_uri: "https://localhost:9090/main",
+    redirect_uri: "https://app.thematchcontrol.com.br/main",
     response_type: "id_token token",
     scope: "openid profile roles",
-    post_logout_redirect_uri: "https://localhost:9090",
+    post_logout_redirect_uri: "https://app.thematchcontrol.com.br",
   };
 
   return (
