@@ -18,12 +18,9 @@ export const Container = styled.div`
     }
 `;
 
-export const Input = styled(TextField)`
-    width: 50%;
-
-    @media (max-width: 720px) {
-        width: 90%;
-    }
+export const Title = styled.h2`
+    color: ${props => props.theme.colors.primaryDark};
+    font-family: Poppins, serif;
 `;
 
 export const StyledButton = styled(Button)`
@@ -41,3 +38,14 @@ export const StyledButton = styled(Button)`
 export const Logo = styled.img`
     height: 200px;
 `;
+
+export const Footer = styled.div`
+    position: absolute;
+    bottom: 0;
+`;
+
+export const VersionText = styled.p`
+    color: ${props => props.theme.colors.primaryDark};
+    cursor: default;
+    font-family: Poppins, serif;
+`   

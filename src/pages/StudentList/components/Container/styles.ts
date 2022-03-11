@@ -23,3 +23,21 @@ export const Title = styled.h3`
     font-size: 15px;
   }
 `;
+
+export const DivTitleTeams = styled.div`
+  display: flex;
+  flex-direction: row;
+
+  align-items: center;
+  justify-content: center;
+`;
+
+export const TitleTeams = styled.h4`
+  color: ${props => props.theme.colors.primaryYellow};
+
+  padding-right: 10px;
+
+  @media (max-width: 720px) {
+    font-size: 12px;
+  }
+`;

@@ -10,7 +10,7 @@ import SnackBar from '../../components/SnackBar';
 import { Container } from './styles';
 
 import { IAttendance, IAttendanceStudent, IPresenceProps } from '../../models/interfaces';
-import { SnackBarSeverity } from '../../models/enums';
+import { CheckValues, SnackBarSeverity } from '../../models/enums';
 
 import { Users } from '../../context/Presence';
 import { useParams } from 'react-router';
@@ -47,7 +47,7 @@ const Presence = () => {
         call?.data.students.map((studentdata: any) => {
             const temp: IAttendanceStudent = {
                 id: studentdata.id,
-                present: studentdata.active
+                present: studentdata.active ? CheckValues.CheckValue : CheckValues.NotCheckValue
             }
 
             studentsData.push(temp)
@@ -58,7 +58,7 @@ const Presence = () => {
         var currentMonth = currentdate.getMonth()+1;
         var datetime = currentdate.getFullYear() + "-"
                 + (currentMonth.toString().length === 1 ? "0" + currentMonth : currentMonth)  + "-" 
-                + currentdate.getDate() + "T" 
+                + (currentdate.getDate().toString().length === 1 ? "0" + currentdate.getDate() : currentdate.getDate()) + "T" 
                 + currentdate.getHours() + ":"  
                 + currentdate.getMinutes() + ":" 
                 + (currentdate.getSeconds().toString().length === 1 ? "0" + currentdate.getSeconds() : currentdate.getSeconds());

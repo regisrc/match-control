@@ -1,5 +1,6 @@
 import { Suspense, lazy } from 'react';
-import { Switch, Route } from 'react-router-dom';
+import { Switch, Route, Redirect } from 'react-router-dom';
+import { VerifyCache } from '../context';
 
 import { Container, ReactLoadingContainer } from './styles';
 

@@ -162,5 +162,15 @@ export interface IAttendance {
 
 export interface IAttendanceStudent {
     id: number;
-    present: boolean;
+    present: number;
+}
+
+export interface IUserSettingsCache {
+    id: number;
+    token?: string;
+}
+
+export interface ILogin {
+    username: string;
+    password: string;
 }

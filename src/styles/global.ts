@@ -15,6 +15,7 @@ export default createGlobalStyle`
       -webkit-font-smoothing: antialiased;
       max-width: 1280px;
       margin: 0 auto;
+      
     }
     ::-webkit-scrollbar {
   width: 2px;
