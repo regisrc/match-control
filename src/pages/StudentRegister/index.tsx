@@ -98,8 +98,8 @@ const StudentRegister = () => {
             <Header title={"Registro de aluno"} isReturnActive={true} path={"/list/student"} />
             <SnackBar showButton={false} alertMessage={state.message} severity={state.severity} snackBarOpen={state.open} UseStateOpenControl={setState} />
             <Container>
-                <Input label="Nome" onChange={(e) => setName(e.target.value)} />
-                <Input label="Apelido" onChange={(e) => setNickName(e.target.value)} />
+                <Input label="Nome*" onChange={(e) => setName(e.target.value)} />
+                <Input label="Apelido*" onChange={(e) => setNickName(e.target.value)} />
                 <MultiSelectDiv>
                     <MultiSelect
                         options={call?.data}
@@ -114,21 +114,22 @@ const StudentRegister = () => {
                     mask="999.999.999-99"
                     value={cpf}
                     onChange={(e) => setCpf(e.target.value)} >
-                    {() => <Input label="CPF" />}
+                    {() => <Input label="CPF*" />}
                 </Mask>
-                <Input label="E-mail" onChange={(e) => setEmail(e.target.value)} />
+                <Input label="E-mail*" onChange={(e) => setEmail(e.target.value)} />
                 <Mask
                     mask="(99) 99999-9999"
                     value={phone}
                     onChange={(e) => setPhone(e.target.value)} >
-                    {() => <Input label="Telefone" />}
+                    {() => <Input label="Telefone*" />}
                 </Mask>
                 <Input
-                    label="Data de Nascimento"
+                    label="Data de Nascimento*"
                     type="date"
                     InputLabelProps={{
                         shrink: true,
                     }}
+                    value={birthday}
                     onChange={(e) => setBirthDay(e.target.value)}
                 />
                 <Button loading={loading} loadingPosition="center" variant="contained" onClick={() => showData()}>Registrar</Button>

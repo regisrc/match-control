@@ -43,6 +43,11 @@ const Main = () => {
                 "title": "Cadastros",
                 "path": "list",
                 "icon": ListIcon  
+            },
+            {
+                "title": "Graduação",
+                "path": "graduationstudent",
+                "icon": ListIcon  
             }
         ]
     };

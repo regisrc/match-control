@@ -1,16 +1,19 @@
-import { useState } from 'react'; 
+import { useState, useEffect } from 'react'; 
 
 import { Container, Input, StyledButton as Button } from './styles';
 
 import Header from '../../components/Header';
 import { IModality } from '../../models/interfaces';
 
-import { SaveModality } from '../../api/controllers/Modality';
+import { UpdateModality, GetOneModality } from '../../api/controllers/Modality';
 
 import SnackBar from '../../components/SnackBar';
 import { SnackBarSeverity } from '../../models/enums';
+import { useParams } from 'react-router-dom';
 
 const ModalityRegister = () => {
+    const params = useParams<any>();
+
     const [loading, setLoading] = useState(false);
     const [state, setState] = useState({
         open: false,
@@ -18,7 +21,25 @@ const ModalityRegister = () => {
         message: "",
     });
 
+    const [data, setData] = useState<any>("");
     const [name, setName] = useState("");
+
+    useEffect(() => {
+        const asyncCall = async () => {
+            const result = await GetOneModality(params.id)
+
+            setData(result) 
+        }; 
+    
+        asyncCall();
+    }, [])
+
+    useEffect(() => {
+        if(data == null)
+            return;
+
+        setName(data?.data?.name);
+    }, [data])
 
     const handleSuccess = () => {
         setState({ open: true, severity: SnackBarSeverity.Success, message: "Salvo com sucesso!" });
@@ -36,7 +57,7 @@ const ModalityRegister = () => {
         }
 
         if (validateData(data))
-            await SaveModality(data).then(handleSuccess).catch(() => handleError("Ocorreu um problema!"));
+            await UpdateModality(params.id, data).then(handleSuccess).catch(() => handleError("Ocorreu um problema!"));
         else
             handleError("Existem problemas com os campos!")
 
@@ -62,7 +83,7 @@ const ModalityRegister = () => {
             <Header title={"Atualização de modalidade"} isReturnActive={true} path={"/list/modality"} />
             <SnackBar showButton={false} alertMessage={state.message} severity={state.severity} snackBarOpen={state.open} UseStateOpenControl={setState} />
             <Container>
-                <Input label="Nome" onChange={(e) => setName(e.target.value)} />
+                <Input label="Nome*" onChange={(e) => setName(e.target.value)} value={name} />
                 <Button loading={loading} loadingPosition="center" variant="contained" onClick={() => showData()}>Registrar</Button>
             </Container>
         </>

@@ -96,7 +96,7 @@ export interface IStudent {
     cpf: string;
     email: string;
     phone: string;
-    groups: Array<string>;
+    groups?: Array<string>;
 }
 
 export interface IStudentWithAddress {
@@ -173,4 +173,9 @@ export interface IUserSettingsCache {
 export interface ILogin {
     username: string;
     password: string;
+}
+
+export interface IDateAttendance {
+    groupId: number;
+    date: string;
 }

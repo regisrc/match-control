@@ -10,9 +10,26 @@ export const SaveModality = async (
     );
   };
 
+  export const UpdateModality = async (
+    id: number,
+    params : IModality
+  ) => {
+    return await api.put(
+      `/Modality/${id}`,
+      params,
+    );
+  };
+
+
 export const GetModality = async () => {
     return await api.get(
       `/Modality`
+    );
+  };
+
+  export const GetOneModality = async (id: number) => {
+    return await api.get(
+      `/Modality/${id}`
     );
   };
 

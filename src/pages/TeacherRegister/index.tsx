@@ -74,24 +74,24 @@ const TeacherRegister = () => {
             <Header title={"Registro de professor"} isReturnActive={true} path={"/list/teacher"} />
             <SnackBar showButton={false} alertMessage={state.message} severity={state.severity} snackBarOpen={state.open} UseStateOpenControl={setState} />
             <Container>
-            <Input label="Nome" onChange={(e) => setName(e.target.value)} />
-                <Input label="Apelido" onChange={(e) => setNickName(e.target.value)}/>
+            <Input label="Nome*" onChange={(e) => setName(e.target.value)} />
+                <Input label="Apelido*" onChange={(e) => setNickName(e.target.value)}/>
                 <Mask
                     mask="999.999.999-99"
                     value={cpf}
                     onChange={(e) => setCpf(e.target.value)} >
-                    {() => <Input label="CPF" />}
+                    {() => <Input label="CPF*" />}
                 </Mask>
-                <Input label="E-mail" onChange={(e) => setEmail(e.target.value)}/>
+                <Input label="E-mail*" onChange={(e) => setEmail(e.target.value)}/>
                 <Mask
                     mask="(99) 99999-9999"
                     value={phone}
                     onChange={(e) => setPhone(e.target.value)} >
-                    {() => <Input label="Telefone" />}
+                    {() => <Input label="Telefone*" />}
                 </Mask>
-                <Input label="Comissão (apenas numérico sem %)" onChange={(e) => setCommission(e.target.value)}/>
+                <Input label="Comissão (apenas numérico sem %)*" onChange={(e) => setCommission(e.target.value)}/>
                 <Input
-                    label="Data de Nascimento"
+                    label="Data de Nascimento*"
                     type="date"
                     InputLabelProps={{
                         shrink: true,

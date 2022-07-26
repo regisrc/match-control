@@ -74,14 +74,14 @@ const GroupRegister = () => {
             <Header title={"Registro de turma"} isReturnActive={true} path={"/list/group"} />
             <SnackBar showButton={false} alertMessage={state.message} severity={state.severity} snackBarOpen={state.open} UseStateOpenControl={setState} />
             <Container>
-                <Input label="Nome" onChange={(e) => setName(e.target.value)}/>
+                <Input label="Nome*" onChange={(e) => setName(e.target.value)}/>
                 <MultiSelectDiv>
                     <MultiSelect
                         options={callStudents?.data}
                         selectedValues={selectedValues}
                         onSelect={(sl: any, si: any)  => setStudent(sl.map((x: any) => x.id))}
                         onRemove={(sl: any, si: any)  => setStudent(arrayRemove(sl, si.id).map((x: any) => x.id))}
-                        placeholder="Alunos"
+                        placeholder="Alunos*"
                         displayValue="name"
                     />
                 </MultiSelectDiv>
@@ -90,14 +90,14 @@ const GroupRegister = () => {
                     options={callTeacher?.data}
                     getOptionLabel={(option: any) => option.name}
                     onChange={(e: any, nv: any)  => setTeacher(nv)}
-                    renderInput={(params: any) => <Input {...params} label="Professor" />}
+                    renderInput={(params: any) => <Input {...params} label="Professor*" />}
                 />
                 <AutoComplete
                     disablePortal
                     options={callModality?.data}
                     getOptionLabel={(option: any) => option.name}
                     onChange={(e: any, nv: any) => setModality(nv)}
-                    renderInput={(params: any) => <Input {...params} label="Modalidade" />}
+                    renderInput={(params: any) => <Input {...params} label="Modalidade*" />}
                 />
                 <Button variant="contained" onClick={() => showData()}>Registrar</Button>
             </Container>

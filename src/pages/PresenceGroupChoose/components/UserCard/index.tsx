@@ -5,7 +5,7 @@ const UserCard = ({ value } : any) => {
     const history = useHistory();
 
     return (
-        <Container onClick={() => history.push(`/presenceGroup/presence/${value.id}`)}>
+        <Container onClick={() => history.push(`/presenceGroup/date/${value.id}`)}>
             <PhotoArea>
                 <NameArea>
                     <Name>{value.name}</Name>   

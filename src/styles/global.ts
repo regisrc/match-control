@@ -1,5 +1,5 @@
-import { createGlobalStyle } from 'styled-components';
-import teste from '../assets/teste.png'
+import { createGlobalStyle } from "styled-components";
+import teste from "../assets/teste.png";
 
 export default createGlobalStyle`
     * {
@@ -9,9 +9,9 @@ export default createGlobalStyle`
       outline: 0;
     }
     body {
-      background: ${props => props.theme.colors.backgroundTheme};
+      background: ${(props) => props.theme.colors.backgroundTheme};
       background-size: cover;
-      color: ${props => props.theme.colors.primaryYellow};
+      color: ${(props) => props.theme.colors.primaryYellow};
       -webkit-font-smoothing: antialiased;
       max-width: 1280px;
       margin: 0 auto;
@@ -51,4 +51,11 @@ export default createGlobalStyle`
     button {
       cursor: pointer;
     }
+
+    input::-webkit-calendar-picker-indicator{
+    display: none;
+}
+input[type="date"]::-webkit-input-placeholder{ 
+    visibility: hidden !important;
+}
   `;

@@ -6,35 +6,42 @@ import { Container, Input, StyledButton as Button, AutoComplete, MultiSelectDiv,
 import Header from '../../components/Header';
 import { IGroup } from '../../models/interfaces';
 
-import { SaveGroup } from '../../api/controllers/Group';
+import { SaveGroup, GetOneGroup } from '../../api/controllers/Group';
 import { GetModality } from '../../api/controllers/Modality';
 import { GetStudents } from '../../api/controllers/Student';
 import { GetTeacher } from '../../api/controllers/Teacher';
 
 import SnackBar from '../../components/SnackBar';
 import { SnackBarSeverity } from '../../models/enums';
+import { useParams } from 'react-router-dom';
 
 const GroupUpdate = () => {
+    const params = useParams<any>();
+
     const [state, setState] = useState({
         open: false,
         severity: "",
         message: "",
     });
+    const [callGroup, setCallGroup] = useState<AxiosResponse | null | void>(null);
     const [callStudents, setCallStudents] = useState<AxiosResponse | null | void>(null);
     const [callTeacher, setCallTeacher] = useState<AxiosResponse | null | void>(null);
     const [callModality, setCallModality] = useState<AxiosResponse | null | void>(null);
 
     const [name, setName] = useState("");
-    const [modality, setModality] = useState(callModality?.data[0]);
-    const [teacher, setTeacher] = useState(callTeacher?.data[0]);
-    const [selectedValues, setSelectedValues] = useState([])
+    const [modality, setModality] = useState<any | null>({});
+    const [student, setStudent] = useState<any>([]);
+    const [teacher, setTeacher] = useState<any | null>({});
+    const [selectedValues, setSelectedValues] = useState<any>([])
 
     useEffect(() => {
         const asyncCall = async () => {
+            const resultGroup = await GetOneGroup(params.id)
             const resultStudents = await GetStudents()
             const resultTeacher = await GetTeacher()
             const resultModality = await GetModality()
 
+            setCallGroup(resultGroup);
             setCallStudents(resultStudents);
             setCallTeacher(resultTeacher);
             setCallModality(resultModality);
@@ -42,6 +49,17 @@ const GroupUpdate = () => {
     
         asyncCall();
     }, [])
+
+    useEffect(() => {
+        if (callGroup == null)
+            return;
+
+        console.log('b')
+        console.log(callGroup)
+
+        setName(callGroup?.data?.name)
+        setTeacher(callGroup?.data?.teacher)
+    }, [callGroup])
 
     const handleSuccess = () => {
         setState({ open: true, severity: SnackBarSeverity.Success, message: "Salvo com sucesso!" });
@@ -55,8 +73,8 @@ const GroupUpdate = () => {
         const data: IGroup = {
             "name": name,
             "students": [], 
-            "modalityId": modality.id,
-            "teacherId": teacher.id
+            "modalityId": modality?.id,
+            "teacherId": teacher?.id
         }
 
         await SaveGroup(data).then(handleSuccess).catch(() => handleError("Ocorreu um problema!"));
@@ -67,12 +85,12 @@ const GroupUpdate = () => {
             <Header title={"Atualização de turma"} isReturnActive={true} path={"/list/group"} />
             <SnackBar showButton={false} alertMessage={state.message} severity={state.severity} snackBarOpen={state.open} UseStateOpenControl={setState} />
             <Container>
-                <Input label="Nome" onChange={(e) => setName(e.target.value)}/>
+                <Input label="Nome*" onChange={(e) => setName(e.target.value)} value={name}/>
                 <MultiSelectDiv>
                     <MultiSelect
                         options={callStudents?.data}
                         selectedValues={selectedValues}
-                        placeholder="Alunos"
+                        placeholder="Alunos*"
                         displayValue="name"
                     />
                 </MultiSelectDiv>
@@ -81,14 +99,14 @@ const GroupUpdate = () => {
                     options={callTeacher?.data}
                     getOptionLabel={(option: any) => option.name}
                     onChange={(e: any, nv: any)  => setTeacher(nv)}
-                    renderInput={(params: any) => <Input {...params} label="Professor" />}
+                    renderInput={(params: any) => <Input {...params} label="Professor*" />}
                 />
                 <AutoComplete
                     disablePortal
                     options={callModality?.data}
                     getOptionLabel={(option: any) => option.name}
                     onChange={(e: any, nv: any) => setModality(nv)}
-                    renderInput={(params: any) => <Input {...params} label="Modalidade" />}
+                    renderInput={(params: any) => <Input {...params} label="Modalidade*" />}
                 />
                 <Button variant="contained" onClick={() => showData()}>Registrar</Button>
             </Container>

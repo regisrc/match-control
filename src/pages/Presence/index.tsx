@@ -9,12 +9,12 @@ import SnackBar from '../../components/SnackBar';
 
 import { Container } from './styles';
 
-import { IAttendance, IAttendanceStudent, IPresenceProps } from '../../models/interfaces';
+import { IAttendance, IAttendanceStudent, IDateAttendance, IPresenceProps } from '../../models/interfaces';
 import { CheckValues, SnackBarSeverity } from '../../models/enums';
 
 import { Users } from '../../context/Presence';
 import { useParams } from 'react-router';
-import { GetOneGroup, Attendance } from '../../api/controllers/Group';
+import { GetOneGroup, Attendance, AttendanceGetDates } from '../../api/controllers/Group';
 import { AxiosResponse } from 'axios';
 
 const Presence = () => {
@@ -30,7 +30,18 @@ const Presence = () => {
 
     useEffect(() => {
         const asyncCall = async () => {
-            const result = await GetOneGroup(params.id)
+            let result = null
+
+            if (!params.date)
+                result = await GetOneGroup(params.id)
+            else {
+                const parametros : IDateAttendance = {
+                    groupId: params.id,
+                    date: params.date
+                }
+
+                result = await AttendanceGetDates(parametros)
+            }
 
             setCall(result)
         }; 
@@ -47,25 +58,29 @@ const Presence = () => {
         call?.data.students.map((studentdata: any) => {
             const temp: IAttendanceStudent = {
                 id: studentdata.id,
-                present: studentdata.active ? CheckValues.CheckValue : CheckValues.NotCheckValue
+                present: studentdata.present ? CheckValues.CheckValue : CheckValues.NotCheckValue
             }
 
             studentsData.push(temp)
         })
 
+        var datetime = "";
+
         
-        var currentdate = new Date(); 
-        var currentMonth = currentdate.getMonth()+1;
-        var datetime = currentdate.getFullYear() + "-"
-                + (currentMonth.toString().length === 1 ? "0" + currentMonth : currentMonth)  + "-" 
-                + (currentdate.getDate().toString().length === 1 ? "0" + currentdate.getDate() : currentdate.getDate()) + "T" 
-                + currentdate.getHours() + ":"  
-                + currentdate.getMinutes() + ":" 
-                + (currentdate.getSeconds().toString().length === 1 ? "0" + currentdate.getSeconds() : currentdate.getSeconds());
+        if (params.date) {
+            datetime = params.date.substring(0, 10)
+        }
+        else {
+            var currentdate = new Date(); 
+            var currentMonth = currentdate.getMonth()+1;
+            datetime = currentdate.getFullYear() + "-"
+                    + (currentMonth.toString().length === 1 ? "0" + currentMonth : currentMonth)  + "-" 
+                    + (currentdate.getDate().toString().length === 1 ? "0" + currentdate.getDate() : currentdate.getDate());
+        }
 
         const data: IAttendance = {
             date: datetime, 
-            groupId: call?.data.id,
+            groupId: call?.data.id || params?.id,
             students: studentsData
         }
 
@@ -79,7 +94,7 @@ const Presence = () => {
     };
 
     const ButtonClick = () => {
-        const index: boolean = !call?.data.students.some((x:any) => x.active === undefined);
+        const index: boolean = !call?.data.students.some((x:any) => x.present === undefined);
 
         if(index) 
             handleSuccess()
@@ -89,10 +104,10 @@ const Presence = () => {
     
     return (
         <>
-            <Header title={titleText} isReturnActive={true} path={"/presenceGroup"} />
+            <Header title={titleText} isReturnActive={true} path={`/presenceGroup/date/${params.id}`} />
             <SnackBar showButton={false} alertMessage={state.message} severity={state.severity} snackBarOpen={state.open} UseStateOpenControl={setState}/>
             <Container>
-                <TitleCard firstLine={call?.data.name} secondLine={call?.data.modality.name}/>
+                {/* <TitleCard firstLine={call?.data.name} secondLine={call?.data.modality.name}/> */}
                 {call?.data.students.map((prop: any, index: number) => 
                     <UserCard key={index} value={prop} />
                 )}

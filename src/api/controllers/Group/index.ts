@@ -1,4 +1,4 @@
-import { IAttendance, IModality } from '../../../models/interfaces';
+import { IAttendance, IModality, IDateAttendance } from '../../../models/interfaces';
 import api from '../../index';
 
 export const SaveGroup = async (
@@ -30,7 +30,19 @@ export const GetGroup = async () => {
 
   export const Attendance = async (params: IAttendance) => {
     return await api.post(
-      `/Group/attendance`,
+      `/Attendance`,
       params
+    );
+  };
+
+  export const AttendanceDates = async (id: number) => {
+    return await api.get(
+      `/Attendance/dates/${id}`
+    );
+  };
+
+  export const AttendanceGetDates = async (params: IDateAttendance) => {
+    return await api.get(
+      `/Attendance/${params.groupId}/${params.date}`
     );
   };

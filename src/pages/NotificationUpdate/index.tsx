@@ -68,9 +68,9 @@ const NotificationUpdate = () => {
             <Header title={"Atualização de Notificações"} isReturnActive={true} path={"/list/notifications"} />
             <SnackBar showButton={false} alertMessage={state.message} severity={state.severity} snackBarOpen={state.open} UseStateOpenControl={setState} />
             <Container>
-                <Input label="Titulo" onChange={(e) => setTitle(e.target.value)} />
+                <Input label="Titulo*" onChange={(e) => setTitle(e.target.value)} />
                 <Input
-                    label="Data agendada"
+                    label="Data agendada*"
                     type="date"
                     InputLabelProps={{
                         shrink: true,
@@ -78,7 +78,7 @@ const NotificationUpdate = () => {
                     onChange={(e) => setDate(e.target.value)}
                 />
                 <Input
-                    label="Conteúdo da mensagem"
+                    label="Conteúdo da mensagem*"
                     multiline
                     rows={9}
                     variant="filled"

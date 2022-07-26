@@ -16,14 +16,15 @@ import { Users } from '../../../../context/Presence';
 const UserCard = ({ value } : any) => {
     const context = useContext(Users);
 
-    const [isCheckActive, SetIsCheckActive] = useState(value.value === CheckValues.CheckValue);
-    const [isNotCheckActive, SetIsNotCheckActive] = useState(value.value === CheckValues.NotCheckValue);
+    const [isCheckActive, SetIsCheckActive] = useState(value.present === CheckValues.CheckValue);
+    const [isNotCheckActive, SetIsNotCheckActive] = useState(value.present === CheckValues.NotCheckValue);
 
     const setActive = (checkValue: number, setActive: React.Dispatch<React.SetStateAction<boolean>>, setNotActive: React.Dispatch<React.SetStateAction<boolean>>) => {
         setActive(true);
         setNotActive(false);
 
-        value.active = checkValue === CheckValues.CheckValue;
+        console.log(checkValue === CheckValues.CheckValue)
+        value.present = checkValue === CheckValues.CheckValue;
     }
 
     return (
@@ -32,7 +33,7 @@ const UserCard = ({ value } : any) => {
                 {/* <Photo src={Image} /> */}
                 <NameArea>
                     <Name>{value.name}</Name>
-                    {value.nickname.length > 1 && <b><Name>{value.nickname}</Name></b>}
+                    {/* {value.nickname.length > 1 && <b><Name>{value.nickname}</Name></b>} */}
                 </NameArea>
             </PhotoArea>
             <ControlArea>

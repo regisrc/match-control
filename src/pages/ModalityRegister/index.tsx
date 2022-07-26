@@ -62,7 +62,7 @@ const ModalityUpdate = () => {
             <Header title={"Registro de modalidade"} isReturnActive={true} path={"/list/modality"} />
             <SnackBar showButton={false} alertMessage={state.message} severity={state.severity} snackBarOpen={state.open} UseStateOpenControl={setState} />
             <Container>
-                <Input label="Nome" onChange={(e) => setName(e.target.value)} />
+                <Input label="Nome*" onChange={(e) => setName(e.target.value)} />
                 <Button loading={loading} loadingPosition="center" variant="contained" onClick={() => showData()}>Registrar</Button>
             </Container>
         </>

@@ -12,17 +12,21 @@ import { Container, Title, StyledButton as Button, Logo, Footer, VersionText } f
 import { PostLogin } from '../../api/controllers/Login';
 import { SetNewUser } from '../../context';
 
+import useGlobalization from '../../globalization/globalizationHook';
+
 const Login = () => {
     const history = useHistory();
 
-    return (
+    const locale : any = useGlobalization();
+
+    return (   
         <Container>
             <Logo src={LogoImage}/>
-            <Title>Você não está autenticado, clique para se logar</Title>
-            <Button onClick={() => history.push("/main")}>Autenticar</Button>
+            <Title>{locale?.loginPage?.pageTitle}</Title>
+            <Button onClick={() => history.push("/main")}>{locale?.loginPage?.button}</Button>
             <Footer>
                 <VersionText>
-                    Versão: {process.env.REACT_APP_APP_VERSION}
+                    {locale?.loginPage?.version}: {process.env.REACT_APP_APP_VERSION}
                 </VersionText>
             </Footer>
         </Container>

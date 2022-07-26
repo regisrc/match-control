@@ -1,5 +1,6 @@
 import { Suspense, lazy } from 'react';
 import { Switch, Route, Redirect } from 'react-router-dom';
+import Logo from '../components/Logo';
 import { VerifyCache } from '../context';
 
 import { Container, ReactLoadingContainer } from './styles';
@@ -7,6 +8,7 @@ import { Container, ReactLoadingContainer } from './styles';
 const Login = lazy(() => import('../pages/Login'));
 const Main = lazy(() => import('../pages/Main'));
 const PresenceGroup = lazy(() => import('../pages/PresenceGroupChoose'));
+const PresenceDate = lazy(() => import('../pages/PresenceDateChoose'));
 const Presence = lazy(() => import('../pages/Presence'));
 const ReportsMain = lazy(() => import('../pages/ReportsMain'));
 const ReportsPerDate = lazy(() => import('../pages/ReportsPerDate'));
@@ -34,6 +36,9 @@ const ModalityUpdate = lazy(() => import('../pages/ModalityUpdate'));
 const NewsUpdate = lazy(() => import('../pages/NewsUpdate'));
 const NotificationUpdate = lazy(() => import('../pages/NotificationUpdate'));
 const Profile = lazy(() => import('../pages/Profile'));
+const Graduation = lazy(() => import('../pages/Graduation'));
+const GraduationAdd = lazy(() => import('../pages/GraduationRegister'));
+const GraduationStudentChoose = lazy(() => import('../pages/GraduationStudentChoose'));
 
 const Loading = (
   <Container>
@@ -46,8 +51,10 @@ const Routes = () => (
     <Switch>
       <Route exact path="/" component={Login} />
       <Route exact path="/main" component={Main} />
-      <Route exact path="/presenceGroup" component={PresenceGroup} />
-      <Route exact path="/presenceGroup/presence/:id" component={Presence} />
+      <Route exact path="/presencegroup" component={PresenceGroup} />
+      <Route exact path="/presencegroup/date/:id" component={PresenceDate} />
+      <Route exact path="/presencegroup/presence/:id" component={Presence} />
+      <Route exact path="/presencegroup/presence/:date/:id" component={Presence} />
       <Route exact path="/report" component={ReportsMain} />
       <Route exact path="/report/date" component={ReportsPerDate} />
       <Route exact path="/report/student" component={ReportsPerStudent} />
@@ -74,7 +81,11 @@ const Routes = () => (
       <Route path="/update/news/:id" component={NewsUpdate} />
       <Route path="/update/notification/:id" component={NotificationUpdate} />
       <Route exact path="/profile" component={Profile} />
+      <Route path="/graduation/:id" component={Graduation} />
+      <Route path="/graduationregister/:id" component={GraduationAdd} />
+      <Route path="/graduationstudent" component={GraduationStudentChoose} />
     </Switch> 
+    <Logo />
   </Suspense>
 );
 
